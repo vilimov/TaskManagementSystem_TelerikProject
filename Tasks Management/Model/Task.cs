@@ -3,10 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Team.Model.Interface;
 
 namespace Team.Model
 {
-    public class Task
+    public abstract class Task : ITask
     {
+        private const int TitleMinLenght = 10;
+        private const int TitleMaxLenght = 50;
+        private const string TitleLenghtErrorMsg = "Title must be between 10 and 50 symbols.";
+        private const int DescriptionMinLenght = 10;
+        private const int DescriptionMaxLenght = 500;
+        private const string DescriptionLenghtErrorMsg = "Description must be between 10 and 500 symbols.";
+
+        private readonly List<string> history = new List<string>();
+        private readonly List<IComment> comments = new List<IComment>();
+
+        public Task(int id, string title, string description) 
+        {
+            Validator.ValidateIntRange(title.Length, TitleMinLenght, TitleMaxLenght, TitleLenghtErrorMsg);
+            Validator.ValidateIntRange(description.Length, DescriptionMinLenght, DescriptionMaxLenght, DescriptionLenghtErrorMsg);
+            Title = title;
+            Description = description;
+        }
+
+        public string Title { get; }
+
+        public string Description { get; }
+
+        public int Id { get; }
     }
 }
