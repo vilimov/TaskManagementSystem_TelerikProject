@@ -15,5 +15,13 @@ namespace Team
                 throw new ArgumentException(message);
             }
         }
+
+        public static void ValidateStringLength(int value, int min, int max, string message)
+        {
+            if (value < min || value > max)
+            {
+                throw new ArgumentOutOfRangeException(message);
+            }
+        }
     }
 }
