@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Team.Model.Interface
 {
-    public interface Interface1
+    public interface IBoard
     {
     }
 }
