@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Team.Model.Interface
 {
-    public interface ITask
+    public interface ITask : ICommentable
     {
         public string Title { get; }
         public string Description { get; }
@@ -14,7 +14,5 @@ namespace Team.Model.Interface
         IMember Assignee { get; }
         IList<IComment> Comments { get; }
         IList<string> History { get; }
-        void AddComment(IComment comment);
-        void RemoveComment(IComment comment);
     }
 }
