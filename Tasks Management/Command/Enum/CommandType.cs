@@ -43,6 +43,8 @@ namespace Team.Command.Enum
 
         //Change the Priority/Severity/Status of a bug.
         //Change the Priority/Size/Status of a story.
-        //Change the Rating/Status of a feedback*/
+        //Change the Rating/Status of a feedback
+        //Assign/Unassign a task to a person.
+        //Add comment to a task
     }
 }

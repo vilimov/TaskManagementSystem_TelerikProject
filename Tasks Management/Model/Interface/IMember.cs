@@ -8,5 +8,8 @@ namespace Team.Model.Interface
 {
     public interface IMember
     {
+        public string Name { get; }
+        public ITask Task { get; }
+        public IList<string> ActivityHistory { get; }
     }
 }
