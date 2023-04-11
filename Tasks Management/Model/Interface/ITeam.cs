@@ -8,5 +8,9 @@ namespace Team.Model.Interface
 {
     public interface ITeam
     {
+        public string Name { get;}
+        public Member Member { get;}
+        public Board Board { get;}
+
     }
 }

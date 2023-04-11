@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Team.Model.Interface;
 
-namespace Team.Model
+namespace Team.Core
 {
-    public class Board : IBoard
+    internal class CommandFactory
     {
-
     }
 }
