@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Team.Model.Interface
 {
-    public interface IComment
+    public interface ICommentable
     {
-        public string CommentText { get; }
-        public string Author { get; }
+        IList<IComment> Comments { get; }
+
+        void AddComment(IComment comment);
+
+        void RemoveComment(IComment comment);
     }
 }

@@ -19,7 +19,6 @@ namespace Team
         }
         public static PriorityType ParsePriorityTypeParameter(string value, string errorMsg)
         {
-            //bool.TryParse(value, out bool result);
             if (PriorityType.TryParse(value, true, out PriorityType result))
             {
                 return result;
