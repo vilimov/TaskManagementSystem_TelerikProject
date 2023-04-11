@@ -9,18 +9,24 @@ namespace Team.Model
 {
     public class Board : IBoard
     {
-        public Board(string name, ITask task, IList<string> history)
+        private readonly IList<string> activityHistory = new List<string>();
+        public Board(string name, ITask task)
         {
             //Validate name
             Name = name;
             Task = task;
-            ActivityHistory = history;
 
         }
         public string Name { get; }
 
         public ITask Task { get; }
 
-        public IList<string> ActivityHistory { get; }
+        public IList<string> ActivityHistory
+        {
+            get
+            {
+                return new List<string>(activityHistory);
+            }
+        }
     }
 }
