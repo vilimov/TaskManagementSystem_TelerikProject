@@ -4,12 +4,16 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Team.Model.Enum;
 
 namespace Team.Model.Interface
 {
     public interface IBug
     {
-
+        public PriorityType Priority { get; }
+        public SeverityType Severity { get; }
+        public StatusType Status { get; }
+        public string Assignee { get; }
 
     }
 }
