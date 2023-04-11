@@ -11,5 +11,10 @@ namespace Team.Model.Interface
         public string Title { get; }
         public string Description { get; }
         public int Id { get; }
+        IMember Assignee { get; }
+        IList<IComment> Comments { get; }
+        IList<string> History { get; }
+        void AddComment(IComment comment);
+        void RemoveComment(IComment comment);
     }
 }

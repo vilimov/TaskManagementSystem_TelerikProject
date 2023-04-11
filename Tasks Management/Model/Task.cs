@@ -32,5 +32,32 @@ namespace Team.Model
         public string Description { get; }
 
         public int Id { get; }
+        public IMember Assignee => throw new NotImplementedException();
+
+        public IList<IComment> Comments
+        {
+            get
+            {
+                return new List<IComment>(comments);
+            }
+        }
+
+        public IList<string> History
+        {
+            get
+            {
+                return new List<string>(history);
+            }
+        }
+
+        public void AddComment(IComment comment)
+        {
+            comments.Add(comment);
+        }
+
+        public void RemoveComment(IComment comment)
+        {
+            comments.Remove(comment);
+        }
     }
 }
