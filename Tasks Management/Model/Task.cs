@@ -16,8 +16,8 @@ namespace Team.Model
         private const int DescriptionMaxLenght = 500;
         private const string DescriptionLenghtErrorMsg = "Description must be between 10 and 500 symbols.";
 
-        private readonly List<string> history = new List<string>();
-        private readonly List<IComment> comments = new List<IComment>();
+        private readonly IList<string> history = new List<string>();
+        private readonly IList<IComment> comments = new List<IComment>();
 
         public Task(int id, string title, string description) 
         {
