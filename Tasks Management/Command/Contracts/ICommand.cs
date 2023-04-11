@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Team.Command
+namespace Team.Command.Contracts
 {
-    public class ShowTeamMemberCommand
+    public interface ICommand
     {
+        string Execute();
     }
 }
