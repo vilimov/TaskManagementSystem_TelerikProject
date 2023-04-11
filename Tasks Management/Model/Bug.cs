@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Team.Exeption;
 using Team.Model.Enum;
-
+using Team.Model.Interface;
 
 namespace Team.Model
 {
-    public class Bug : Task
+    public class Bug : Task, IBug
     {
         private PriorityType priority;
         private SeverityType severity;

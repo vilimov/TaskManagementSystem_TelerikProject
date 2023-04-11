@@ -8,7 +8,7 @@ using Team.Model.Enum;
 
 namespace Team.Model.Interface
 {
-    public interface IBug
+    public interface IBug : ITask
     {
         public PriorityType Priority { get; }
         public SeverityType Severity { get; }
