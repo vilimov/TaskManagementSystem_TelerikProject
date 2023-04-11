@@ -32,7 +32,6 @@ namespace Team.Model
         public string Description { get; }
 
         public int Id { get; }
-        public IMember Assignee => throw new NotImplementedException();
 
         public IList<IComment> Comments
         {
@@ -58,6 +57,11 @@ namespace Team.Model
         public void RemoveComment(IComment comment)
         {
             comments.Remove(comment);
+        }
+
+        public void AddHistory(string historyText)
+        {
+            history.Add(historyText);
         }
     }
 }
