@@ -7,7 +7,7 @@ using Team.Model.Enum;
 
 namespace Team.Model.Interface
 {
-    public interface IFeedback
+    public interface IFeedback : ITask
     {
         FeedbackStatus StatusType { get; }
     } 
