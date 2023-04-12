@@ -8,9 +8,14 @@ namespace Team.Model.Interface
 {
     public interface ITeam
     {
-        public string Name { get;}
-        public Member Member { get;}
-        public Board Board { get;}
+        public string Name { get; }
+        IList <IMember> Members { get; }
+        IList<IBoard> Boards { get; }
+        void AddMember(IMember member);
+        void RemoveMember(IMember member);
+
+        void AddBoard(IBoard board);
+        void RemoveBoard(IBoard board);
 
     }
 }
