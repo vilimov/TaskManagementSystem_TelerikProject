@@ -18,8 +18,11 @@ namespace Team.Core
         public ICommand Create(string commandLine)
         {
 
-            CommandType commandType = ParseCommandType(commandLine);
-            List<string> commandParameters = ExtractCommandParameters(commandLine);
+            string[] arguments = commandLine.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+
+            CommandType commandType = ParseCommandType(arguments[0]);
+            List<string> commandParameters = ExtractCommandParameters(arguments);
+
 
             switch (commandType)
             {
@@ -63,7 +66,7 @@ namespace Team.Core
             }
 
         }
-        private CommandType ParseCommandType(string commandLine)
+        /*private CommandType ParseCommandType(string commandLine)
         {
             string commandName = commandLine.Split(SplitCommandSymbol)[0];
             bool isParsed = Enum.TryParse(commandName, true, out CommandType result);
@@ -72,13 +75,23 @@ namespace Team.Core
                 throw new InvalidUserInputException("Invalid Command Type");
             }
             return result;
+        }*/
+
+        private CommandType ParseCommandType(string value)
+        {
+            Enum.TryParse(value, true, out CommandType result);
+            return result;
         }
 
-        //ToDo Implementation
-        private List<string> ExtractCommandParameters(string commandLine)
+        private List<String> ExtractCommandParameters(string[] arguments)
         {
-            List<string> parameters = new List<string>();
-            return parameters;
+            List<string> commandParameters = new List<string>();
+
+            for (int i = 1; i < arguments.Length; i++)
+            {
+                commandParameters.Add(arguments[i]);
+            }
+            return commandParameters;
         }
     }
 }
