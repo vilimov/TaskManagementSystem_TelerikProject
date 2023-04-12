@@ -23,6 +23,7 @@ namespace Team.Model
         {
             Validator.ValidateIntRange(title.Length, TitleMinLenght, TitleMaxLenght, TitleLenghtErrorMsg);
             Validator.ValidateIntRange(description.Length, DescriptionMinLenght, DescriptionMaxLenght, DescriptionLenghtErrorMsg);
+            Id = id;
             Title = title;
             Description = description;
         }
