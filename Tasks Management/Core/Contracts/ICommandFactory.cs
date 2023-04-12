@@ -7,7 +7,7 @@ using Team.Command.Contracts;
 
 namespace Team.Core.Contracts
 {
-    public interface ICommandFactory : ICommand
+    public interface ICommandFactory
     {
         ICommand Create(string commandLine);
     }

@@ -11,7 +11,6 @@ namespace Team.Command.Enum
 {
     public enum CommandType
     {
-
         //Add person to team.
         AddMemberToTeam,
         //Create a new board in a team.
@@ -39,7 +38,7 @@ namespace Team.Command.Enum
         //Show team's activity.
         ShowTeamsActivity,
         //Show all teams.
-        ShowTeams,
+        ShowTeams
 
         //Change the Priority/Severity/Status of a bug.
         //Change the Priority/Size/Status of a story.
