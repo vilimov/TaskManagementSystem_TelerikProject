@@ -19,20 +19,18 @@ namespace Team.Model
         private readonly IList<string> history = new List<string>();
         private readonly IList<IComment> comments = new List<IComment>();
 
-        public Task(int id, string title, string description, string boardName) 
+        public Task(int id, string title, string description) 
         {
             Validator.ValidateIntRange(title.Length, TitleMinLenght, TitleMaxLenght, TitleLenghtErrorMsg);
             Validator.ValidateIntRange(description.Length, DescriptionMinLenght, DescriptionMaxLenght, DescriptionLenghtErrorMsg);
             Id = id;
             Title = title;
             Description = description;
-            BoardName = boardName;
         }
 
         public string Title { get; }
 
         public string Description { get; }
-        public string BoardName { get; }
 
         public int Id { get; }
 
