@@ -20,11 +20,12 @@ namespace Team.Model
         public Bug( int id, 
                     string title,  
                     string description, 
+                    string boardName,
                     PriorityType priority, 
                     SeverityType severity, 
                     string assignee,
                     string listOfSteps) 
-            : base(id, title, description)
+            : base(id, title, description, boardName)
         {
             Status = StatusType.Active;
         }

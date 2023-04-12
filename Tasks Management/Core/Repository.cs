@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Team.Core.Contracts;
 using Team.Model;
 using Team.Model.Enum;
@@ -22,25 +23,55 @@ namespace Team.Core
         var bus = new Bus(++nextId, passengerCapacity, pricePerKilometer, hasFreeTv);
         this.vehicles.Add(bus);
         return bus;*/
-        public IList<ITeam> Teams => throw new NotImplementedException();
+        public IList<ITeam> Teams
+        {
+            get
+            {
+                return new List<ITeam>(teams);
+            }
+        }
 
-        public IList<IMember> Members => throw new NotImplementedException();
+        public IList<IMember> Members
+        {
+            get
+            {
+                return new List<IMember>(members);
+            }
+        }
 
-        public IList<IBoard> Boards => throw new NotImplementedException();
+        public IList<IBoard> Boards
+        {
+            get
+            {
+                return new List<IBoard>(boards);
+            }
+        }
 
-        public IList<ITask> Tasks => throw new NotImplementedException();
+        public IList<ITask> Tasks
+        {
+            get
+            {
+                return new List<ITask>(tasks);
+            }
+        }
 
         public IBoard CreateBoard(string name, ITask task)
         {
             throw new NotImplementedException();
         }
 
-        public IBug CreateBug(int id, string title, string description, PriorityType priority, SeverityType severity, string assignee, string listOfSteps)
+        public IBug CreateBug(string title, string description, string bordName, PriorityType priority, 
+                              SeverityType severity, string assignee, string listOfSteps)
         {
-            throw new NotImplementedException();
+            doesTaskTitleExists(title);
+            doesBoardNameExists(bordName);
+            var taskID = tasks.Count;
+            var bug = new Bug(++taskID, title, description, bordName, priority, severity, assignee, listOfSteps);
+            this.tasks.Add(bug);
+            return bug;
         }
 
-        public IFeedback CreateFeedback(int id, string title, string description, FeedbackStatus statusType)
+        public IFeedback CreateFeedback(int id, string title, string description, string bordName, FeedbackStatus statusType)
         {
             throw new NotImplementedException();
         }
@@ -50,7 +81,7 @@ namespace Team.Core
             throw new NotImplementedException();
         }
 
-        public IStory CreateStory(int id, string title, string description, PriorityType priority, SizeType size, StoryStatusType status, string assignee)
+        public IStory CreateStory(int id, string title, string description, string bordName, PriorityType priority, SizeType size, StoryStatusType status, string assignee)
         {
             throw new NotImplementedException();
         }
@@ -59,5 +90,34 @@ namespace Team.Core
         {
             throw new NotImplementedException();
         }
+
+        //UNDONE - This is not supposed to be checked - Check for unique Task Title
+        public bool doesTaskTitleExists(string title)
+        {
+            foreach (var task in tasks)
+            {
+                if (task.Title == title)
+                {
+                    string errorMsg = $"Task with title {title} already exists.";
+                    throw new ArgumentException(errorMsg);
+                }
+            }
+            return false;
+        }
+
+        //Check if Board Name exists
+        public bool doesBoardNameExists(string name)
+        {
+            foreach (var board in boards)
+            {
+                if (board.Name == name)
+                {
+                    return true;
+                }
+            }
+            string errorMsg = $"Board with name {name} doesn't exist.";
+            throw new ArgumentException(errorMsg);
+        }
+
     }
 }

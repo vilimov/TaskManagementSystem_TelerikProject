@@ -10,7 +10,7 @@ namespace Team.Model
 {
     public class Feedback : Task, IFeedback
     {
-        public Feedback(int id, string title, string description, FeedbackStatus statusType) : base(id, title, description)
+        public Feedback(int id, string title, string description, string board, FeedbackStatus statusType) : base(id, title, description, board)
         {
             StatusType = statusType;
         }

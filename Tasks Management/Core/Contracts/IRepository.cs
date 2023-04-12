@@ -19,8 +19,8 @@ namespace Team.Core.Contracts
         public IBoard CreateBoard(string name, ITask task);
         public IMember CreateMember(string name, ITask task);
         public ITeam CreateTeam(string name, Member member, Board board);
-        public IBug CreateBug(int id, string title, string description, PriorityType priority, SeverityType severity, string assignee,string listOfSteps);
-        public IStory CreateStory(int id, string title, string description, PriorityType priority, SizeType size, StoryStatusType status, string assignee);
-        public IFeedback CreateFeedback(int id, string title, string description, FeedbackStatus statusType);
+        public IBug CreateBug(string title, string description, string board, PriorityType priority, SeverityType severity, string assignee,string listOfSteps);
+        public IStory CreateStory(int id, string title, string description, string board, PriorityType priority, SizeType size, StoryStatusType status, string assignee);
+        public IFeedback CreateFeedback(int id, string title, string description, string board, FeedbackStatus statusType);
     }
 }

@@ -10,6 +10,7 @@ namespace Team.Model.Interface
     {
         public string Title { get; }
         public string Description { get; }
+        public string BoardName { get; }
         public int Id { get; }
         IList<IComment> Comments { get; }
         IList<string> History { get; }

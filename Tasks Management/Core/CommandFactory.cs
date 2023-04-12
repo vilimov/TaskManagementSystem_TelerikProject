@@ -1,4 +1,5 @@
-﻿using Team.Command;
+﻿using System.Text.RegularExpressions;
+using Team.Command;
 using Team.Command.Contracts;
 using Team.Command.Enum;
 using Team.Core.Contracts;
@@ -9,6 +10,8 @@ namespace Team.Core
     public class CommandFactory : ICommandFactory
     {
         private const char SplitCommandSymbol = ' ';
+        private const string CommentOpenSymbol = "<<";
+        private const string CommentCloseSymbol = ">>";
 
         private readonly IRepository repository;
         public CommandFactory(IRepository repository)
@@ -18,10 +21,8 @@ namespace Team.Core
         public ICommand Create(string commandLine)
         {
 
-            string[] arguments = commandLine.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-
-            CommandType commandType = ParseCommandType(arguments[0]);
-            List<string> commandParameters = ExtractCommandParameters(arguments);
+            CommandType commandType = ParseCommandType(commandLine);
+            List<string> commandParameters = ExtractCommandParameters(commandLine);
 
 
             switch (commandType)
@@ -85,20 +86,34 @@ namespace Team.Core
             return result;
         }*/
 
-        private CommandType ParseCommandType(string value)
+        private CommandType ParseCommandType(string commandLine)
         {
-            Enum.TryParse(value, true, out CommandType result);
+            Enum.TryParse(commandLine, true, out CommandType result);
             return result;
         }
 
-        private List<String> ExtractCommandParameters(string[] arguments)
+        public static List<String> ExtractCommandParameters(string commandLine)
         {
             List<string> commandParameters = new List<string>();
-
-            for (int i = 1; i < arguments.Length; i++)
+            var indexOfOpenComment = commandLine.IndexOf(CommentOpenSymbol);
+            var indexOfCloseComment = commandLine.IndexOf(CommentCloseSymbol);
+            while (indexOfOpenComment > -1)
             {
-                commandParameters.Add(arguments[i]);
+                if (indexOfOpenComment >= 0)
+                {
+                    var commentStartIndex = indexOfOpenComment + CommentOpenSymbol.Length;
+                    var commentLength = indexOfCloseComment - CommentCloseSymbol.Length - indexOfOpenComment;
+                    string commentParameter = commandLine.Substring(commentStartIndex, commentLength);
+                    commandParameters.Add(commentParameter);
+                    string removeThisText = CommentOpenSymbol + commentParameter + CommentCloseSymbol;
+                    commandLine = commandLine.Replace(removeThisText, string.Empty);
+                }
+                indexOfOpenComment = commandLine.IndexOf(CommentOpenSymbol);
+                indexOfCloseComment = commandLine.IndexOf(CommentCloseSymbol);
             }
+            var indexOfFirstSeparator = commandLine.IndexOf(SplitCommandSymbol);
+            commandParameters.AddRange(commandLine.Substring(indexOfFirstSeparator + 1).Split(new[] { SplitCommandSymbol }, StringSplitOptions.RemoveEmptyEntries));
+
             return commandParameters;
         }
     }
