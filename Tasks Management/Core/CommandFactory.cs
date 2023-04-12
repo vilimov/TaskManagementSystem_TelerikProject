@@ -29,7 +29,7 @@ namespace Team.Core
                 //Milko
                 case CommandType.AddMemberToTeam:
                     return new AddMemberToTeamCommand(commandParameters, repository);
-                /*case CommandType.CreateBoard:
+                case CommandType.CreateBoard:
                     return new CreateBoardCommand(commandParameters, repository);
                 //Mila
                 case CommandType.CreateBug:
@@ -61,7 +61,7 @@ namespace Team.Core
                     return new ShowTeamsActivityCommand(repository);
                 //
                 case CommandType.ShowTeams:
-                    return new ShowTeamsCommand(repository);*/
+                    return new ShowTeamsCommand(repository);
                 default:
                     throw new InvalidUserInputException($"Command with name: {commandType} doesn't exist!");
 

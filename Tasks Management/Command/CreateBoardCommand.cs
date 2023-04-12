@@ -7,15 +7,18 @@ using Team.Core.Contracts;
 
 namespace Team.Command
 {
-    public class CreateBoardCommand
+    public class CreateBoardCommand : BaseCommand
     {
-        public CreateBoardCommand(object commandParameters, IRepository repository)
+        public CreateBoardCommand(IList<string> commandParameters, IRepository repository) : base(commandParameters, repository)
         {
-            CommandParameters = commandParameters;
-            Repository = repository;
         }
 
         public object CommandParameters { get; }
         public IRepository Repository { get; }
+
+        public override string Execute()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
