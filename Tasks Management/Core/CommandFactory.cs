@@ -26,32 +26,40 @@ namespace Team.Core
 
             switch (commandType)
             {
+                //Milko
                 case CommandType.AddMemberToTeam:
                     return new AddMemberToTeamCommand(commandParameters, repository);
                 /*case CommandType.CreateBoard:
                     return new CreateBoardCommand(commandParameters, repository);
+                //Mila
                 case CommandType.CreateBug:
                     return new CreateBugCommand(commandParameters, repository);
                 case CommandType.CreateFeedback:
                     return new CreateFeedbackCommand(commandParameters, repository);
+                //Koci
                 case CommandType.CreateMember:
                     return new CreateMemberCommand(commandParameters, repository);
                 case CommandType.CreateStory:
                     return new CreateStoryCommand(commandParameters, repository);
+                //
                 case CommandType.CreateTeam:
                     return new CreateTeamCommand(commandParameters, repository);
+                //Milko
                 case CommandType.ShowBoardsActivity:
                     return new ShowBoardsActivityCommand(repository);
                 case CommandType.ShowMembersActivity:
                     return new ShowMembersActivityCommand(repository);
+                //Mila
                 case CommandType.ShowMembers:
                     return new ShowMembersCommand(repository);
                 case CommandType.ShowTeamBoards:
                     return new ShowTeamBoardsCommand(repository);
+                //Koci
                 case CommandType.ShowTeamMembers:
                     return new ShowTeamMembersCommand(repository);
                 case CommandType.ShowTeamsActivity:
                     return new ShowTeamsActivityCommand(repository);
+                //
                 case CommandType.ShowTeams:
                     return new ShowTeamsCommand(repository);*/
                 default:
