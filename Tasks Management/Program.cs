@@ -13,6 +13,8 @@ namespace Team
 
             IStory story1 = new Story(1, "Title_title1", "Description1", Model.Enum.PriorityType.Low, Model.Enum.SizeType.Small, Model.Enum.StoryStatusType.NotDone, "Assignee1");
 
+            IMember member = new Member("Gosho", story);
+
             Console.WriteLine(new string('#', 20));
         }
     }
