@@ -10,24 +10,43 @@ namespace Team.Model
 {
     public class Board : IBoard
     {
-        public IList<string> activityHistory = new List<string>();
-        public Board(string name, ITask task)
+        private const int minLength = 5;
+        private const int maxLength = 15;
+        private const string errorMsg = "Board name must be between {0} and {1} symbols";
+
+        public Board(string name)
         {
-            //Validate name
+            Validator.ValidateIntRange(name.Length, minLength, maxLength, errorMsg);
             Name = name;
-            Task = task;
+            Tasks = new List<ITask>();
+            ActivityHistory = new List<string>();
 
         }
         public string Name { get; }
 
-        public ITask Task { get; }
+        public IList<ITask> Tasks { get; }
 
-        public IList<string> ActivityHistory
+        public IList<string> ActivityHistory { get; }
+
+        public void AddActivity(string activity)
         {
-            get
+            ActivityHistory.Add(activity);
+        }
+
+        public void AssignTask(ITask task)
+        {
+            if (Tasks.Any(t => t.Id == task.Id))
             {
-                return new List<string>(activityHistory);
+                throw new ArgumentException("Task Id must be unique within the member's tasks.");
             }
+            Tasks.Add(task);
+            AddActivity($"Assigned task with Id {task.Id} to member {Name}.");
+        }
+
+        public void UnassignTask(ITask task)
+        {
+            Tasks.Remove(task);
+            AddActivity($"Assigned task with Id {task.Id} to member {Name}.");
         }
     }
 }

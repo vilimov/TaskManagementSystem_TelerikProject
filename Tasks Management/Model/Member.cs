@@ -13,24 +13,33 @@ namespace Team.Model
         private const int NameMinLength = 5;
         private const int NameMaxLength = 15;
         private const string errorMsg = "Member's name must be between {0} and {1} symbols";
-        public IList<string> activityHistory = new List<string>();
         public Member(string name, ITask task)
         {
             Validator.ValidateIntRange(name.Length, NameMinLength, NameMaxLength, String.Format(errorMsg, NameMinLength, NameMaxLength));
             Name = name;
-            Task = task;
+            Tasks = new List<ITask>();
+            ActivityHistory = new List<string>();
 
         }
         public string Name { get; }
 
-        public ITask Task { get; }
+        public IList<ITask> Tasks { get; }
 
-        public IList<string> ActivityHistory
+        public IList<string> ActivityHistory { get; }
+
+        public void AddActivity(string activity)
         {
-            get
-            {
-                return new List<string>(activityHistory);
-            }
+            throw new NotImplementedException();
+        }
+
+        public void AddTask(ITask task)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveTask(ITask task)
+        {
+            throw new NotImplementedException();
         }
     }
 }

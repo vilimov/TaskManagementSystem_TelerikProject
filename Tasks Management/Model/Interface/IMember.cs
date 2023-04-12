@@ -9,7 +9,10 @@ namespace Team.Model.Interface
     public interface IMember
     {
         public string Name { get; }
-        public ITask Task { get; }
+        public IList<ITask> Tasks { get; }
         public IList<string> ActivityHistory { get; }
+        void AddTask(ITask task);
+        void RemoveTask(ITask task);
+        void AddActivity(string activity);
     }
 }
