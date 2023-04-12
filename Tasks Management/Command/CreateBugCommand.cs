@@ -7,15 +7,18 @@ using Team.Core.Contracts;
 
 namespace Team.Command
 {
-    public class CreateBugCommand
+    public class CreateBugCommand : BaseCommand
     {
-        public CreateBugCommand(object commandParameters, IRepository repository)
+        public CreateBugCommand(IList<string> commandParameters, IRepository repository) : base(commandParameters, repository)
         {
-            CommandParameters = commandParameters;
-            Repository = repository;
         }
 
         public object CommandParameters { get; }
         public IRepository Repository { get; }
+
+        public override string Execute()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
