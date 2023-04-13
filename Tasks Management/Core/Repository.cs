@@ -64,9 +64,10 @@ namespace Team.Core
                               SeverityType severity, string assignee, string listOfSteps)
         {
             doesTaskTitleExists(title);
-            doesBoardNameExists(bordName);
+            var myBoard = BoardNameExists(bordName);
             var taskID = tasks.Count;
-            var bug = new Bug(++taskID, title, description, bordName, priority, severity, assignee, listOfSteps);
+            var bug = new Bug(++taskID, title, description, priority, severity, assignee, listOfSteps);
+            myBoard.AssignTask(bug);
             this.tasks.Add(bug);
             return bug;
         }
@@ -102,22 +103,23 @@ namespace Team.Core
                     throw new ArgumentException(errorMsg);
                 }
             }
-            return false;
+            return true;
         }
 
-        //Check if Board Name exists
-        public bool doesBoardNameExists(string name)
+        //Check if Board Name exists and return the Board with this name
+        public IBoard BoardNameExists(string name)
         {
             foreach (var board in boards)
             {
                 if (board.Name == name)
                 {
-                    return true;
+                    return board;
                 }
             }
             string errorMsg = $"Board with name {name} doesn't exist.";
             throw new ArgumentException(errorMsg);
         }
+
 
     }
 }

@@ -33,7 +33,7 @@ namespace Team.Command
             //  [4] - severity of the task
             //  [5] - assignee of the task
             //  [6] - listOfSteps of the task
-
+            //UNDONE - check if Board exists and add to the board
             string title = this.CommandParameters[0];
             string description = this.CommandParameters[1];
             string board = this.CommandParameters[2];
