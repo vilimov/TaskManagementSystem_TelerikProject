@@ -30,8 +30,6 @@ namespace Team.Model
         public int Id { get; }
         public string Title { get; }
         public string Description { get; }
-        public IMember Assignee { get; set; }
-
         
         public IList<IComment> Comments
         {
