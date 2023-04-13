@@ -55,7 +55,8 @@ namespace Team.Core
                     //ShowMembers - lists all Created Members in the application
                     return new ShowMembersCommand(repository);
                 case CommandType.ShowTeamBoards:
-                    return new ShowTeamBoardsCommand(repository);
+                    //ShowTeamBoards - lists all doards for specific Team in the application
+                    return new ShowTeamBoardsCommand(commandParameters, repository);
                 //Koci
                 case CommandType.ShowTeamMembers:
                     return new ShowTeamMembersCommand(repository);

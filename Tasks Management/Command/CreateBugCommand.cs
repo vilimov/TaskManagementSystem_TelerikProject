@@ -12,7 +12,7 @@ namespace Team.Command
 {
     public class CreateBugCommand : BaseCommand
     {
-        public const int ExpectedNumberOfArguments = 8;
+        public const int ExpectedNumberOfArguments = 7;
         public CreateBugCommand(IList<string> commandParameters, IRepository repository) 
             : base(commandParameters, repository)
         {
