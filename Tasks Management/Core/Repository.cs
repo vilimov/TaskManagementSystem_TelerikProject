@@ -65,6 +65,7 @@ namespace Team.Core
         {
             doesTaskTitleExists(title);
             var myBoard = BoardNameExists(bordName);
+            var myTeam = CheckTeamHasBoard(myBoard);
             var taskID = tasks.Count;
             var bug = new Bug(++taskID, title, description, priority, severity, assignee, listOfSteps);
             myBoard.AssignTask(bug);
@@ -120,6 +121,16 @@ namespace Team.Core
             throw new ArgumentException(errorMsg);
         }
 
-
+        public ITeam CheckTeamHasBoard(IBoard checkBoard)
+        {
+            foreach (var team in teams)
+            {
+                if (team.Boards.Contains(checkBoard))
+                {
+                    return team;
+                }
+            }
+            throw new ArgumentException("This board is not part of any team");
+        }
     }
 }
