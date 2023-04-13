@@ -33,20 +33,21 @@ namespace Team.Model
             ActivityHistory.Add(activity);
         }
 
-        public void AssignTask(ITask task)
+        public void AddTask(ITask task)
         {
             if (Tasks.Any(t => t.Id == task.Id))
             {
-                throw new ArgumentException("Task Id must be unique within the member's tasks.");
+                throw new ArgumentException("Task ID must be unique within the board's tasks.");
             }
+
             Tasks.Add(task);
-            AddActivity($"Assigned task with Id {task.Id} to member {Name}.");
+            AddActivity($"Added task with ID {task.Id} to board {Name}.");
         }
 
-        public void UnassignTask(ITask task)
+        public void RemoveTask(ITask task)
         {
             Tasks.Remove(task);
-            AddActivity($"Assigned task with Id {task.Id} to member {Name}.");
+            AddActivity($"Removed task with ID {task.Id} from board {Name}.");
         }
     }
 }

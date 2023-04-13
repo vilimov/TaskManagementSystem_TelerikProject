@@ -13,7 +13,7 @@ namespace Team.Model
         private const int NameMinLength = 5;
         private const int NameMaxLength = 15;
         private const string errorMsg = "Member's name must be between {0} and {1} symbols";
-        public Member(string name, ITask task)
+        public Member(string name)
         {
             Validator.ValidateIntRange(name.Length, NameMinLength, NameMaxLength, String.Format(errorMsg, NameMinLength, NameMaxLength));
             Name = name;
@@ -27,19 +27,25 @@ namespace Team.Model
 
         public IList<string> ActivityHistory { get; }
 
+        public void AssignTask(ITask task)
+        {
+            if (task != null && !Tasks.Contains(task))
+            {
+                Tasks.Add(task);
+                AddActivity($"{Name} is assigned to task with ID {task.Id}.");
+            }
+        }
+        public void UnassignTask(ITask task)
+        {
+            if (task != null && Tasks.Contains(task))
+            {
+                Tasks.Remove(task);
+                AddActivity($"{Name} is unassigned from task with ID {task.Id}.");
+            }
+        }
         public void AddActivity(string activity)
         {
-            throw new NotImplementedException();
-        }
-
-        public void AddTask(ITask task)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RemoveTask(ITask task)
-        {
-            throw new NotImplementedException();
+            ActivityHistory.Add(activity);
         }
     }
 }

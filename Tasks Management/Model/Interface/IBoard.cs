@@ -11,8 +11,8 @@ namespace Team.Model.Interface
         public string Name { get; }
         public IList<ITask> Tasks { get; }
         public IList<string> ActivityHistory { get; }
-        void AssignTask(ITask task);
-        void UnassignTask(ITask task);
+        void AddTask(ITask task);
+        void RemoveTask(ITask task);
         void AddActivity(string activity);
     }
 }
