@@ -11,14 +11,14 @@ namespace Team.Command
     public class ShowTeamBoardsCommand : BaseCommand
     {
         public const int ExpectedNumberOfArguments = 1;
-        public ShowTeamBoardsCommand(IList<string> commandParameters, IRepository repository) : base(repository)
+        public ShowTeamBoardsCommand(IList<string> commandParameters, IRepository repository) : base(commandParameters, repository)
         {
         }
         public override string Execute()
         {
             if (this.CommandParameters.Count < ExpectedNumberOfArguments)
             {
-                throw new InvalidUserInputException(@$"Invalid number of arguments. Expected: {ExpectedNumberOfArguments}, Received: {this.CommandParameters.Count}; \nPlease enter correct Team name");
+                throw new InvalidUserInputException($"Invalid number of arguments. Expected: {ExpectedNumberOfArguments}, Received: {this.CommandParameters.Count}; \nPlease enter correct Team name");
             }
             // Parameters:
             //  [0] - Name of the Team
