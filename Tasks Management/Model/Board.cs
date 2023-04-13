@@ -14,6 +14,7 @@ namespace Team.Model
         private const int maxLength = 15;
         private const string errorMsg = "Board name must be between {0} and {1} symbols";
 
+
         public Board(string name)
         {
             Validator.ValidateIntRange(name.Length, minLength, maxLength, errorMsg);
@@ -26,7 +27,15 @@ namespace Team.Model
 
         public IList<ITask> Tasks { get; }
 
-        public IList<string> ActivityHistory { get; }
+        public IList<string> ActivityHistory
+        {
+            get
+            {
+                var copy = new List<string>(ActivityHistory);
+                return copy;
+            }
+            private set { ActivityHistory = value; }
+        }
 
         public void AddActivity(string activity)
         {

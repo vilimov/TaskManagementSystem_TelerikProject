@@ -47,7 +47,7 @@ namespace Team.Core
                     return new CreateTeamCommand(commandParameters, repository);
                 //Milko
                 case CommandType.ShowBoardsActivity:
-                    return new ShowBoardsActivityCommand(repository);
+                    return new ShowBoardsActivityCommand(commandParameters, repository);
                 case CommandType.ShowMembersActivity:
                     return new ShowMembersActivityCommand(repository);
                 //Mila
