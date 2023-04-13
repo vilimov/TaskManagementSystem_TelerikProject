@@ -32,7 +32,7 @@ namespace Team.Core
                     return new AddMemberToTeamCommand(commandParameters, repository);
                 case CommandType.CreateBoard:
                     return new CreateBoardCommand(commandParameters, repository);
-                //Mila
+                //Mila Done
                 case CommandType.CreateBug:
                     return new CreateBugCommand(commandParameters, repository);
                 case CommandType.CreateFeedback:
@@ -52,6 +52,7 @@ namespace Team.Core
                     return new ShowMembersActivityCommand(repository);
                 //Mila
                 case CommandType.ShowMembers:
+                    //ShowMembers - lists all Created Members in the application
                     return new ShowMembersCommand(repository);
                 case CommandType.ShowTeamBoards:
                     return new ShowTeamBoardsCommand(repository);

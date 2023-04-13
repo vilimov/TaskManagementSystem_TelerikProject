@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Team.Core.Contracts;
+using Team.Model;
 
 namespace Team.Command
 {
@@ -11,14 +12,26 @@ namespace Team.Command
     {
         public ShowMembersCommand(IRepository repository) : base(repository)
         {
-            Repository = repository;
         }
-
-        public IRepository Repository { get; }
 
         public override string Execute()
         {
-            throw new NotImplementedException();
+            if (this.Repository.Members.Count > 0)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("All Members:");
+                foreach (var member in this.Repository.Members)
+                {
+                    sb.AppendLine(member.Name);
+                }
+                sb.Append("---------------");
+                return sb.ToString();
+            }
+            else
+            {
+                string message = "No members created";
+                return message;
+            }
         }
     }
 }

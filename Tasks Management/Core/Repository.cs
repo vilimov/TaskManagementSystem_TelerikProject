@@ -100,7 +100,7 @@ namespace Team.Core
             throw new NotImplementedException();
         }
 
-        //UNDONE - This is not supposed to be checked - Check for unique Task Title
+        //Check for unique Task Title
         public bool doesTaskTitleExists(string title)
         {
             foreach (var task in tasks)
