@@ -55,7 +55,8 @@ namespace Team.Core
             }
         }
 
-        public IBoard CreateBoard(string name, ITask task)
+        //public IBoard CreateBoard(string name, ITask task)
+        public IBoard CreateBoard(string name)
         {
             throw new NotImplementedException();
         }
