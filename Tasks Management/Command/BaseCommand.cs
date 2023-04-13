@@ -53,5 +53,13 @@ namespace Team.Command
             }
             throw new InvalidUserInputException($"Invalid value for {parameterName}. Please select Minor, Major or Critical");
         }
+        protected FeedbackStatus ParseFeedbackStatusParameter(string value, string parameterName)
+        {
+            if (System.Enum.TryParse(value, true, out FeedbackStatus result))
+            {
+                return result;
+            }
+            throw new InvalidUserInputException($"Invalid value for {parameterName}. Please select Done, Scheduled, Unscheduled or New");
+        }
     }
 }

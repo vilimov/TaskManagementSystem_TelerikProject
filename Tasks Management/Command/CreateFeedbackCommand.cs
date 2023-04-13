@@ -4,21 +4,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Team.Core.Contracts;
+using Team.Exeption;
+using Team.Model.Enum;
+using Team.Model.Interface;
 
 namespace Team.Command
 {
     public class CreateFeedbackCommand : BaseCommand 
     {
-        public CreateFeedbackCommand(IList<string> commandParameters, IRepository repository) : base(commandParameters, repository)
+        public const int ExpectedNumberOfArguments = 5;
+        public CreateFeedbackCommand(IList<string> commandParameters, IRepository repository) 
+            : base(commandParameters, repository)
         {
         }
 
-        public object CommandParameters { get; }
-        public IRepository Repository { get; }
-
         public override string Execute()
         {
-            throw new NotImplementedException();
+            if (this.CommandParameters.Count < ExpectedNumberOfArguments)
+            {
+                throw new InvalidUserInputException($"Invalid number of arguments. Expected: {ExpectedNumberOfArguments}, Received: {this.CommandParameters.Count}");
+            }
+            // Parameters:
+            //  ID of the task - passed by the Repository
+            //  [0] - title of the task - validation in the constructor
+            //  [1] - descriotion of the task - validation in the constructor
+            //  [2] - rating - validation in the constructor
+            //  [3] - Board in which to be added this task
+            //  [4] - feedbackStatus of the task
+            string title = this.CommandParameters[0];
+            string description = this.CommandParameters[1];
+            int rating = ParseIntParameter(this.CommandParameters[2], "rating");
+            string board = this.CommandParameters[3];
+            FeedbackStatus feedbackStatus = this.ParseFeedbackStatusParameter(this.CommandParameters[4], "feedbackStatus");
+
+            var feedback = this.Repository.CreateFeedback(title, description, rating, board, feedbackStatus);
+            return $"Feedback with ID {feedback.Id} was created.";
+
         }
     }
 }
