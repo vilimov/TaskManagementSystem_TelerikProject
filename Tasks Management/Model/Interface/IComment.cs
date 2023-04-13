@@ -10,6 +10,6 @@ namespace Team.Model.Interface
     public interface IComment
     {
         public string CommentText { get; }
-        public string Author { get; }
+        public IMember Author { get; }
     }
 }

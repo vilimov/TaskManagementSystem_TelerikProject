@@ -14,14 +14,14 @@ namespace Team.Model
         private const int CommentMaxLength = 200;
         private const string InvalidCommentError = "Invalid comment text length";
         private const string CommentSeparator = "**********";
-        public Comment(string comment, string author)
+        public Comment(string comment, IMember author)
         {
             Validator.ValidateIntRange(comment.Length, CommentMinLength, CommentMaxLength, InvalidCommentError);
 
             CommentText = comment;
             Author = author;
         }
-        public string Author { get; }
+        public IMember Author { get; }
 
         public string CommentText { get; }
 

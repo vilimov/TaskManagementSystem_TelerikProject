@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using Team.Model.Enum;
@@ -13,15 +14,31 @@ namespace Team.Model
         private const int ratingMinValue = 1;
         private const int ratingMaxValue = 5;
         private const string ratingErrorMsg = "Rating must be a number between {0} and {1}";
+
+        private FeedbackStatus statusType;
         public Feedback(int id, string title, string description,int rating, FeedbackStatus statusType) : base(id, title, description)
         {
             Validator.ValidateIntRange(rating, ratingMinValue, ratingMaxValue, string.Format(ratingErrorMsg, ratingMinValue, ratingMaxValue));
-            StatusType = statusType;
+            this.StatusType = statusType;
             Rating = rating;
         }
-
-        public FeedbackStatus StatusType { get; }
-
         public int Rating { get; set; }
+        public FeedbackStatus StatusType 
+        {
+            get
+            {
+                return statusType;
+            }
+            set
+            {
+                AddHistory($"Status changed from {this.statusType} to {value}");
+                this.statusType = value;
+            }
+        }
+        public void AddComment(string commentText, IMember author)
+        {
+            Comments.Add(new Comment(commentText, author));
+            AddHistory($"{author.Name} added a comment: {commentText}");
+        }
     }
 }

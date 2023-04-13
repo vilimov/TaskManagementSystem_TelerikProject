@@ -29,19 +29,13 @@ namespace Team.Model
 
         public void AssignTask(ITask task)
         {
-            if (task != null && !Tasks.Contains(task))
-            {
-                Tasks.Add(task);
-                AddActivity($"{Name} is assigned to task with ID {task.Id}.");
-            }
+            Tasks.Add(task);
+            AddActivity($"{Name} is assigned to task with ID {task.Id}.");
         }
         public void UnassignTask(ITask task)
         {
-            if (task != null && Tasks.Contains(task))
-            {
-                Tasks.Remove(task);
-                AddActivity($"{Name} is unassigned from task with ID {task.Id}.");
-            }
+            Tasks.Remove(task);
+            AddActivity($"{Name} is unassigned from task with ID {task.Id}.");  
         }
         public void AddActivity(string activity)
         {
