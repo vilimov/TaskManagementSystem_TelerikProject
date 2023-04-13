@@ -10,5 +10,6 @@ namespace Team.Model.Interface
     public interface IFeedback : ITask
     {
         FeedbackStatus StatusType { get; }
+        int Rating { get; }
     } 
 }

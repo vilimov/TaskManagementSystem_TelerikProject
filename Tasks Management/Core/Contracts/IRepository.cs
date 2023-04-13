@@ -20,7 +20,7 @@ namespace Team.Core.Contracts
         public IMember CreateMember(string name, ITask task);
         public ITeam CreateTeam(string name, Member member, Board board);
         public IBug CreateBug(string title, string description, string board, PriorityType priority, SeverityType severity, string assignee,string listOfSteps);
-        public IStory CreateStory(int id, string title, string description, string board, PriorityType priority, SizeType size, StoryStatusType status, string assignee);
-        public IFeedback CreateFeedback(int id, string title, string description, string board, FeedbackStatus statusType);
+        public IStory CreateStory(string title, string description, string board, PriorityType priority, SizeType size, StoryStatusType status, string assignee);
+        public IFeedback CreateFeedback(string title, string description, int rating, string board, FeedbackStatus statusType);
     }
 }

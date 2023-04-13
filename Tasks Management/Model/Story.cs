@@ -14,12 +14,11 @@ namespace Team.Model
         public Story(int id, 
                     string title, 
                     string description, 
-                    string board,
                     PriorityType priority, 
                     SizeType size, 
                     StoryStatusType status, 
                     string assignee)
-                    : base(id, title, description, board)
+                    : base(id, title, description)
         {
             Priority = priority;
             Size = size;

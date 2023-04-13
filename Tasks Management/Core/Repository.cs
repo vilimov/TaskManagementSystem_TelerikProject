@@ -66,6 +66,7 @@ namespace Team.Core
             doesTaskTitleExists(title);
             var myBoard = BoardNameExists(bordName);
             var myTeam = CheckTeamHasBoard(myBoard);
+            CheckMemberInTeam(myTeam, assignee);
             var taskID = tasks.Count;
             var bug = new Bug(++taskID, title, description, priority, severity, assignee, listOfSteps);
             myBoard.AssignTask(bug);
@@ -73,9 +74,15 @@ namespace Team.Core
             return bug;
         }
 
-        public IFeedback CreateFeedback(int id, string title, string description, string bordName, FeedbackStatus statusType)
+        public IFeedback CreateFeedback(string title, string description, int rating, string bordName, FeedbackStatus statusType)
         {
-            throw new NotImplementedException();
+            doesTaskTitleExists(title);
+            var myBoard = BoardNameExists(bordName);
+            var taskID = tasks.Count;
+            var feedback = new Feedback(++taskID, title, description, rating, statusType);
+            myBoard.AssignTask(feedback);
+            this.tasks.Add(feedback);
+            return feedback;
         }
 
         public IMember CreateMember(string name, ITask task)
@@ -83,7 +90,7 @@ namespace Team.Core
             throw new NotImplementedException();
         }
 
-        public IStory CreateStory(int id, string title, string description, string bordName, PriorityType priority, SizeType size, StoryStatusType status, string assignee)
+        public IStory CreateStory(string title, string description, string bordName, PriorityType priority, SizeType size, StoryStatusType status, string assignee)
         {
             throw new NotImplementedException();
         }
@@ -121,6 +128,7 @@ namespace Team.Core
             throw new ArgumentException(errorMsg);
         }
 
+        //Check if the board is added to a team
         public ITeam CheckTeamHasBoard(IBoard checkBoard)
         {
             foreach (var team in teams)
@@ -131,6 +139,19 @@ namespace Team.Core
                 }
             }
             throw new ArgumentException("This board is not part of any team");
+        }
+
+        //Check if member is part of a team
+        public bool CheckMemberInTeam(ITeam myTeamm, string memberName)
+        {
+            foreach (var teamMember in myTeamm.Members)
+            {
+                if (teamMember.Name == memberName)
+                { 
+                    return true;
+                }
+            }
+            throw new ArgumentException($"Person with name {memberName} is not in the {myTeamm.Name} team");
         }
     }
 }
