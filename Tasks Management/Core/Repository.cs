@@ -69,7 +69,7 @@ namespace Team.Core
             CheckMemberInTeam(myTeam, assignee);
             var taskID = tasks.Count;
             var bug = new Bug(++taskID, title, description, priority, severity, assignee, listOfSteps);
-            myBoard.AssignTask(bug);
+            myBoard.AddTask(bug);
             this.tasks.Add(bug);
             return bug;
         }
@@ -80,7 +80,7 @@ namespace Team.Core
             var myBoard = BoardNameExists(bordName);
             var taskID = tasks.Count;
             var feedback = new Feedback(++taskID, title, description, rating, statusType);
-            myBoard.AssignTask(feedback);
+            myBoard.AddTask(feedback);
             this.tasks.Add(feedback);
             return feedback;
         }
