@@ -75,7 +75,7 @@ namespace Team.Core
             }
 
         }
-        /*private CommandType ParseCommandType(string commandLine)
+        private CommandType ParseCommandType(string commandLine)
         {
             string commandName = commandLine.Split(SplitCommandSymbol)[0];
             bool isParsed = Enum.TryParse(commandName, true, out CommandType result);
@@ -84,13 +84,14 @@ namespace Team.Core
                 throw new InvalidUserInputException("Invalid Command Type");
             }
             return result;
-        }*/
-
-        private CommandType ParseCommandType(string commandLine)
-        {
-            Enum.TryParse(commandLine, true, out CommandType result);
-            return result;
         }
+
+        /*private CommandType ParseCommandType(string commandLine)
+        {
+            string commandName = commandLine.Split(SplitCommandSymbol)[0];
+            Enum.TryParse(commandName, true, out CommandType result);
+            return result;
+        }*/
 
         public static List<String> ExtractCommandParameters(string commandLine)
         {

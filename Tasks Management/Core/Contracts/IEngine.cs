@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Team.Core.Contracts
 {
-    internal class IEngine
+    public interface IEngine
     {
+        public void Start();
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Team.Model.Interface;
 using Team.Model;
+using Team.Core.Contracts;
+using Team.Core;
 
 namespace Team
 {
@@ -7,6 +9,12 @@ namespace Team
     {
         static void Main(string[] args)
         {
+            IRepository repository = new Repository();
+            ICommandFactory commandFactory = new CommandFactory(repository);
+            IEngine engine = new Core.Engine(commandFactory);
+            engine.Start();
+
+            /*
             Console.WriteLine("Hello, World!");
 
             ITask story = new Story(1, "Title_title", "Description", Model.Enum.PriorityType.Low, Model.Enum.SizeType.Small, Model.Enum.StoryStatusType.NotDone, "Assignee");
@@ -15,7 +23,7 @@ namespace Team
 
             IMember member = new Member("Gosho", story);
 
-            Console.WriteLine(new string('#', 20));
+            Console.WriteLine(new string('#', 20));*/
         }
     }
 }
