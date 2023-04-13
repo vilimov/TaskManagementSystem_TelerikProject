@@ -13,6 +13,11 @@ namespace Team.Command
 {
     public abstract class BaseCommand : ICommand
     {
+        protected BaseCommand(IRepository repository)
+            : this(new List<string>(), repository)
+        {
+            this.Repository = repository;
+        }
         protected BaseCommand(IList<string> commandParameters, IRepository repository)
         {
             this.CommandParameters = commandParameters;

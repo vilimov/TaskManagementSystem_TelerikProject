@@ -7,9 +7,9 @@ using Team.Core.Contracts;
 
 namespace Team.Command
 {
-    public class CreateMemberCommand
+    public class CreateMemberCommand : BaseCommand
     {
-        public CreateMemberCommand(object commandParameters, IRepository repository)
+        public CreateMemberCommand(IList<string> commandParameters, IRepository repository) : base(commandParameters, repository)
         {
             CommandParameters = commandParameters;
             Repository = repository;
@@ -17,5 +17,10 @@ namespace Team.Command
 
         public object CommandParameters { get; }
         public IRepository Repository { get; }
+
+        public override string Execute()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

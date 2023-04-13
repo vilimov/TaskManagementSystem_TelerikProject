@@ -3,10 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Team.Core.Contracts;
 
 namespace Team.Command
 {
-    public class ShowTeamBoardsCommand
+    public class ShowTeamBoardsCommand : BaseCommand
     {
+        public ShowTeamBoardsCommand(IRepository repository) : base(repository)
+        {
+            Repository = repository;
+        }
+
+        public IRepository Repository { get; }
+        public override string Execute()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

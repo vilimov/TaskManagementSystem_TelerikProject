@@ -7,9 +7,9 @@ using Team.Core.Contracts;
 
 namespace Team.Command
 {
-    public class ShowMembersCommand : BaseCommand
+    public class ShowMembersActivityCommand : BaseCommand
     {
-        public ShowMembersCommand(IRepository repository) : base(repository)
+        public ShowMembersActivityCommand(IRepository repository) : base(repository)
         {
             Repository = repository;
         }
