@@ -18,6 +18,8 @@ namespace Team.Core
         private readonly IList<IBoard> boards = new List<IBoard>();
         private readonly IList<ITask> tasks = new List<ITask>();
 
+        private int lastTaskId = 0;
+
         //TODO - Example of ID tracker
         /*var nextId = vehicles.Count;
         var bus = new Bus(++nextId, passengerCapacity, pricePerKilometer, hasFreeTv);
@@ -97,14 +99,26 @@ namespace Team.Core
             return newMember;
         }
 
-        public IStory CreateStory(string title, string description, string bordName, PriorityType priority, SizeType size, StoryStatusType status, string assignee)
+        public IStory CreateStory(string title, string description, string boardName, PriorityType priority, SizeType size, StoryStatusType status, string assignee)
         {
-            throw new NotImplementedException();
+            doesTaskTitleExists(title);
+            var myBoard = BoardNameExists(boardName);
+            var taskID = GenerateUniqueTaskId();
+            var story = new Story(taskID, title, description, priority, size, status, assignee);
+            myBoard.AddTask(story);
+            this.tasks.Add(story);
+            return story;
         }
 
         public ITeam CreateTeam(string name, Member member, Board board)
         {
             throw new NotImplementedException();
+        }
+        //ID ++
+        private int GenerateUniqueTaskId()
+        {
+            lastTaskId++;
+            return lastTaskId;
         }
 
         //Check for unique Task Title

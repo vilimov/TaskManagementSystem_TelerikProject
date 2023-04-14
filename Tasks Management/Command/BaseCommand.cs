@@ -68,5 +68,21 @@ namespace Team.Command
                 throw new InvalidUserInputException($"Invalid number of arguments. Expected: {expectedNumberOfArguments}, Received: {commandParameters.Count}");
             }
         }
+        protected SizeType ParseSizeTypeParameter(string value, string parameterName)
+        {
+            if (System.Enum.TryParse(value, true, out SizeType result))
+            {
+                return result;
+            }
+            throw new InvalidUserInputException($"Invalid value for {parameterName}. Please select Small, Medium or Large");
+        }
+        protected StoryStatusType ParseStoryStatusTypeParameter(string value, string parameterName)
+        {
+            if (System.Enum.TryParse(value, true, out StoryStatusType result))
+            {
+                return result;
+            }
+            throw new InvalidUserInputException($"Invalid value for {parameterName}. Please select NotDone, InProgress or Done");
+        }
     }
 }
