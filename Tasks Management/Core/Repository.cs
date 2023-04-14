@@ -74,8 +74,8 @@ namespace Team.Core
             var myBoard = BoardNameExists(bordName);
             var myTeam = CheckTeamHasBoard(myBoard);
             CheckMemberInTeam(myTeam, assignee);
-            var taskID = tasks.Count;
-            var bug = new Bug(++taskID, title, description, priority, severity, assignee, listOfSteps);
+            var taskID = GenerateUniqueTaskId();
+            var bug = new Bug(taskID, title, description, priority, severity, assignee, listOfSteps);
             myBoard.AddTask(bug);
             this.tasks.Add(bug);
             return bug;
@@ -85,8 +85,8 @@ namespace Team.Core
         {
             doesTaskTitleExists(title);
             var myBoard = BoardNameExists(bordName);
-            var taskID = tasks.Count;
-            var feedback = new Feedback(++taskID, title, description, rating, statusType);
+            var taskID = GenerateUniqueTaskId();
+            var feedback = new Feedback(taskID, title, description, rating, statusType);
             myBoard.AddTask(feedback);
             this.tasks.Add(feedback);
             return feedback;
