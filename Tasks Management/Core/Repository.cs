@@ -102,7 +102,7 @@ namespace Team.Core
             throw new NotImplementedException();
         }
 
-        public ITeam CreateTeam(string name)
+        public ITeam CreateTeam(string name, Member member, Board board)
         {
             throw new NotImplementedException();
         }
@@ -160,5 +160,6 @@ namespace Team.Core
             }
             throw new ArgumentException($"Person with name {memberName} is not in the {myTeamm.Name} team");
         }
+
     }
 }
