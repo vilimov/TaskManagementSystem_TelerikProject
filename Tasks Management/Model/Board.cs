@@ -37,7 +37,7 @@ namespace Team.Model
         {
             get
             {
-                var copy = new List<string>(ActivityHistory);
+                var copy = new List<string>(activityHistory);
                 return copy;
             }         
         }

@@ -44,10 +44,12 @@ namespace Team.Core
                     ICommand command = commandFactory.Create(inputLine);
                     string result = command.Execute();
                     Console.WriteLine(result.Trim());
+                    Console.WriteLine(ReportSeparator);
                 }
                 catch (InvalidUserInputException ex)
                 {
                     Console.WriteLine(ex.Message);
+                    Console.WriteLine(ReportSeparator);
                 }
                 catch (Exception ex)
                 {

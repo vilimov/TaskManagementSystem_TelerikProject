@@ -62,6 +62,7 @@ namespace Team.Core
         {
             var newBoard = new Board(name);
             teams.FirstOrDefault(t => t.Name == team.Name).AddBoard(newBoard);
+            boards.Add(newBoard);
             return newBoard;
 
         }
