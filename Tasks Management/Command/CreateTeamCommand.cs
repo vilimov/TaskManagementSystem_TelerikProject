@@ -27,10 +27,9 @@ namespace Team.Command
                 throw new InvalidUserInputException($"Team with name {teamName} already exists.");
             }
 
-            //var team = Repository.Teams.CreateTeam();
+            var team = Repository.CreateTeam(teamName);
 
-
-            return "Team {teamName} added to teams.";
+            return $"Team {teamName} added to teams.";
         }
     }
 }

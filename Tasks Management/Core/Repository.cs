@@ -60,7 +60,10 @@ namespace Team.Core
         //public IBoard CreateBoard(string name, ITask task)
         public IBoard CreateBoard(string name, ITeam team)
         {
-            throw new NotImplementedException();
+            var newBoard = new Board(name);
+            teams.FirstOrDefault(t => t.Name == team.Name).AddBoard(newBoard);
+            return newBoard;
+
         }
 
         public IBug CreateBug(string title, string description, string bordName, PriorityType priority, 
@@ -101,18 +104,15 @@ namespace Team.Core
 
         public IStory CreateStory(string title, string description, string boardName, PriorityType priority, SizeType size, StoryStatusType status, string assignee)
         {
-            doesTaskTitleExists(title);
-            var myBoard = BoardNameExists(boardName);
-            var taskID = GenerateUniqueTaskId();
-            var story = new Story(taskID, title, description, priority, size, status, assignee);
-            myBoard.AddTask(story);
-            this.tasks.Add(story);
-            return story;
+            throw new NotImplementedException();
         }
 
-        public ITeam CreateTeam(string name, Member member, Board board)
+        public ITeam CreateTeam(string name)
         {
-            throw new NotImplementedException();
+            var newTeam = new Model.Team(name);
+            teams.Add(newTeam);
+            return newTeam;
+            
         }
         //ID ++
         private int GenerateUniqueTaskId()
