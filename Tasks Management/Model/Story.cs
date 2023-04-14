@@ -21,7 +21,6 @@ namespace Team.Model
                     string description, 
                     PriorityType priority, 
                     SizeType size, 
-                    StoryStatusType status, 
                     string assignee)
                     : base(id, title, description)
         {

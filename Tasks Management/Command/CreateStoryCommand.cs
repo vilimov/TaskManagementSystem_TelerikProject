@@ -11,7 +11,7 @@ namespace Team.Command
 {
     public class CreateStoryCommand : BaseCommand
     {
-        public const int ExpectedNumberOfArguments = 7;
+        public const int ExpectedNumberOfArguments = 6;
         public CreateStoryCommand(IList<string> commandParameters, IRepository repository) : base(commandParameters, repository)
         {
         }
@@ -25,10 +25,10 @@ namespace Team.Command
             string boardName = this.CommandParameters[2];
             PriorityType priority = ParsePriorityTypeParameter(this.CommandParameters[3], "priority");
             SizeType size = ParseSizeTypeParameter(this.CommandParameters[4], "size");
-            StoryStatusType status = ParseStoryStatusTypeParameter(this.CommandParameters[5], "status");
-            string assignee = this.CommandParameters[6];
+            //StoryStatusType status = ParseStoryStatusTypeParameter(this.CommandParameters[5], "status");
+            string assignee = this.CommandParameters[5];
 
-            var story = this.Repository.CreateStory(title, description, boardName, priority, size, status, assignee);
+            var story = this.Repository.CreateStory(title, description, boardName, priority, size, assignee);
             return $"Story with ID {story.Id} was created.";
         }
     }

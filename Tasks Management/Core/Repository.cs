@@ -107,15 +107,29 @@ namespace Team.Core
             return newMember;
         }
 
-        public IStory CreateStory(string title, string description, string boardName, PriorityType priority, SizeType size, StoryStatusType status, string assignee)
+        public IStory CreateStory(string title, string description, string boardName, PriorityType priority, SizeType size, string assignee)
         {
             doesTaskTitleExists(title);
             var myBoard = BoardNameExists(boardName);
+            var myAssignee = AssigneeNameExists(assignee);
             var taskID = GenerateUniqueTaskId();
-            var story = new Story(taskID, title, description, priority, size, status, assignee);
+            var story = new Story(taskID, title, description, priority, size, assignee);
             myBoard.AddTask(story);
             this.tasks.Add(story);
             return story;
+        }
+
+        private object AssigneeNameExists(string assignee)
+        {
+            foreach (var member in members)
+            {
+                if (member.Name == assignee)
+                {
+                    return member;
+                }
+            }
+            string errorMsg = $"Assignee with name '{assignee}' doesn't exist.";
+            throw new ArgumentException(errorMsg);
         }
 
         public ITeam CreateTeam(string name)
@@ -159,7 +173,7 @@ namespace Team.Core
             string errorMsg = $"Board with name {name} doesn't exist.";
             throw new ArgumentException(errorMsg);
         }
-
+                
         //Check if the board is added to a team
         public ITeam CheckTeamHasBoard(IBoard checkBoard)
         {

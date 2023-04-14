@@ -63,7 +63,7 @@ namespace Team.Command
         }
         protected void ValidateInputParametersCount(IList<string> commandParameters, int expectedNumberOfArguments)
         {
-            if (commandParameters.Count < expectedNumberOfArguments)
+            if (commandParameters.Count != expectedNumberOfArguments)
             {
                 throw new InvalidUserInputException($"Invalid number of arguments. Expected: {expectedNumberOfArguments}, Received: {commandParameters.Count}");
             }
