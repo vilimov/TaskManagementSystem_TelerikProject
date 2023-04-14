@@ -8,9 +8,9 @@ namespace Team.Model.Enum
 {
     public enum FeedbackStatus
     {
-        Done,
-        Scheduled,
+        New,
         Unscheduled,
-        New
+        Scheduled,
+        Done        
     }
 }

@@ -12,7 +12,7 @@ namespace Team.Command
 {
     public class CreateFeedbackCommand : BaseCommand 
     {
-        public const int ExpectedNumberOfArguments = 5;
+        public const int ExpectedNumberOfArguments = 4;
         public CreateFeedbackCommand(IList<string> commandParameters, IRepository repository) 
             : base(commandParameters, repository)
         {
@@ -28,14 +28,14 @@ namespace Team.Command
             //  [1] - descriotion of the task - validation in the constructor
             //  [2] - rating - validation in the constructor
             //  [3] - Board in which to be added this task
-            //  [4] - feedbackStatus of the task
+            //  FeedbackStatus is set to New in the constructor
             string title = this.CommandParameters[0];
             string description = this.CommandParameters[1];
             int rating = ParseIntParameter(this.CommandParameters[2], "rating");
             string board = this.CommandParameters[3];
-            FeedbackStatus feedbackStatus = this.ParseFeedbackStatusParameter(this.CommandParameters[4], "feedbackStatus");
+            //FeedbackStatus feedbackStatus = this.ParseFeedbackStatusParameter(this.CommandParameters[4], "feedbackStatus");
 
-            var feedback = this.Repository.CreateFeedback(title, description, rating, board, feedbackStatus);
+            var feedback = this.Repository.CreateFeedback(title, description, rating, board);
             return $"Feedback with ID {feedback.Id} was created.";
 
         }

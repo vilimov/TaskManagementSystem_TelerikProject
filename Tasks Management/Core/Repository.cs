@@ -81,7 +81,7 @@ namespace Team.Core
             return bug;
         }
 
-        public IFeedback CreateFeedback(string title, string description, int rating, string bordName, FeedbackStatus statusType)
+        public IFeedback CreateFeedback(string title, string description, int rating, string bordName)
         {
             doesTaskTitleExists(title);
             var myBoard = BoardNameExists(bordName);
