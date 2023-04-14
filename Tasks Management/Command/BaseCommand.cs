@@ -61,5 +61,12 @@ namespace Team.Command
             }
             throw new InvalidUserInputException($"Invalid value for {parameterName}. Please select Done, Scheduled, Unscheduled or New");
         }
+        protected void ValidateInputParametersCount(IList<string> commandParameters, int expectedNumberOfArguments)
+        {
+            if (commandParameters.Count < expectedNumberOfArguments)
+            {
+                throw new InvalidUserInputException($"Invalid number of arguments. Expected: {expectedNumberOfArguments}, Received: {commandParameters.Count}");
+            }
+        }
     }
 }

@@ -31,6 +31,17 @@ namespace Team.Command
             {
                 throw new InvalidUserInputException($"Team with name {teamName} does not exist");
             }
+            var team = Repository.Teams.FirstOrDefault(t => t.Name == teamName);
+            var member = Repository.Members.FirstOrDefault(m => m.Name == memberName);
+            if (team.Members.Contains(member))
+            {
+                throw new InvalidUserInputException($"Team {teamName} already contains member with name {memberName}.");
+            }
+            else 
+            {
+                team.AddMember(member);
+            }
+            
             
             //ToDo Implement Add member to team
             return $"Member {memberName} added to team {teamName}.";

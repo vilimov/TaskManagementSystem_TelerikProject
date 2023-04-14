@@ -4,23 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Team.Core.Contracts;
+using Team.Exeption;
 
 namespace Team.Command
 {
     public class CreateTeamCommand : BaseCommand
     {
+        public const int ExpectedNumberOfArguments = 1;
         public CreateTeamCommand(IList<string> commandParameters, IRepository repository) : base(commandParameters, repository)
         {
-            CommandParameters = commandParameters;
-            Repository = repository;
         }
-
-        public object CommandParameters { get; }
-        public IRepository Repository { get; }
 
         public override string Execute()
         {
-            throw new NotImplementedException();
+            ValidateInputParametersCount(CommandParameters, ExpectedNumberOfArguments);
+
+            //ToDo Needs implementation
+            return "Member {memberName} added to team {teamName}.";
         }
     }
 }
