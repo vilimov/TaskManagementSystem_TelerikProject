@@ -49,7 +49,6 @@ namespace Team.Command
                         return text;
                     }
                 }
-                
             }
             string message = $"No team with name - {name} exists.";
             return message;
