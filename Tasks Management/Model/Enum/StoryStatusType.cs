@@ -8,8 +8,8 @@ namespace Team.Model.Enum
 {
     public enum StoryStatusType
     {
-        Done,
-        InProgress,
-        NotDone
+        NotDone,
+        InProgress, 
+        Done,           
     }
 }
