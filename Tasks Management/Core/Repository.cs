@@ -56,7 +56,7 @@ namespace Team.Core
         }
 
         //public IBoard CreateBoard(string name, ITask task)
-        public IBoard CreateBoard(string name)
+        public IBoard CreateBoard(string name, ITeam team)
         {
             throw new NotImplementedException();
         }
@@ -96,7 +96,7 @@ namespace Team.Core
             throw new NotImplementedException();
         }
 
-        public ITeam CreateTeam(string name, Member member, Board board)
+        public ITeam CreateTeam(string name)
         {
             throw new NotImplementedException();
         }

@@ -19,8 +19,18 @@ namespace Team.Command
         {
             ValidateInputParametersCount(CommandParameters, ExpectedNumberOfArguments);
 
-            //ToDo Needs implementation
-            return "Member {memberName} added to team {teamName}.";
+            //Parameters:
+            // [0] Team Name
+            string teamName = this.CommandParameters[0];
+            if (Repository.Teams.Any(t => t.Name == teamName)) 
+            {
+                throw new InvalidUserInputException($"Team with name {teamName} already exists.");
+            }
+
+            //var team = Repository.Teams.CreateTeam();
+
+
+            return "Team {teamName} added to teams.";
         }
     }
 }

@@ -13,10 +13,7 @@ namespace Team.Command
 
         public override string Execute()
         {
-            if (CommandParameters.Count < ExpectedNumberOfArguments)
-            {
-                throw new InvalidUserInputException($"Invalid number of arguments. Expected: {ExpectedNumberOfArguments}, Received: {CommandParameters.Count}");
-            }
+            ValidateInputParametersCount(CommandParameters, ExpectedNumberOfArguments);
 
             // Parameters:
             //  [0] - Member Name
@@ -37,13 +34,8 @@ namespace Team.Command
             {
                 throw new InvalidUserInputException($"Team {teamName} already contains member with name {memberName}.");
             }
-            else 
-            {
-                team.AddMember(member);
-            }
-            
-            
-            //ToDo Implement Add member to team
+            team.AddMember(member);                
+
             return $"Member {memberName} added to team {teamName}.";
         }
     }

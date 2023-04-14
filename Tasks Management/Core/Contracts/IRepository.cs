@@ -17,9 +17,9 @@ namespace Team.Core.Contracts
         IList<ITask> Tasks { get; }
         //TODO IRepository - Make the create methods
         //public IBoard CreateBoard(string name, ITask task);
-        public IBoard CreateBoard(string name);
+        public IBoard CreateBoard(string name, ITeam team);
         public IMember CreateMember(string name, ITask task);
-        public ITeam CreateTeam(string name, Member member, Board board);
+        public ITeam CreateTeam(string name);
         public IBug CreateBug(string title, string description, string board, PriorityType priority, SeverityType severity, string assignee,string listOfSteps);
         public IStory CreateStory(string title, string description, string board, PriorityType priority, SizeType size, StoryStatusType status, string assignee);
         public IFeedback CreateFeedback(string title, string description, int rating, string board, FeedbackStatus statusType);

@@ -18,18 +18,24 @@ namespace Team.Command
 
         public override string Execute()
         {
-            if (this.CommandParameters.Count < ExpectedNumberOfArguments)
-            {
-                throw new InvalidUserInputException($"Invalid number of arguments. Expected: {ExpectedNumberOfArguments}, Received: {this.CommandParameters.Count}");
-            }
+            ValidateInputParametersCount(CommandParameters, ExpectedNumberOfArguments);
+
             // Parameters:
             //  [0] - Board name
             //  [1] - Team name
             string boardName = this.CommandParameters[0];
             string teamName = this.CommandParameters[1];
+            if (!Repository.Teams.Any(t => t.Name == teamName))
+            {
+                throw new InvalidUserInputException($"Team with name {teamName} does not exist");
+            }
+            var team = Repository.Teams.FirstOrDefault(t => t.Name == teamName);
+            if (team.Boards.Any(b => b.Name == boardName))
+            {
+                throw new InvalidUserInputException($"Board with name {boardName} already exists in team {teamName}.");
+            }
+            this.Repository.CreateBoard(boardName, team);
 
-            var board = this.Repository.CreateBoard(boardName);
-            //ToDo Implementation
             return $"Board {boardName} added to team {teamName}.";
         }
     }
