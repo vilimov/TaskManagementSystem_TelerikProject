@@ -14,18 +14,24 @@ namespace Team.Model
         private const int maxLength = 15;
         private const string errorMsg = "Board name must be between {0} and {1} symbols";
 
+        private readonly IList<ITask> tasks = new List<ITask>();
+        private readonly IList<string> activityHistory = new List<string>();
 
         public Board(string name)
         {
             Validator.ValidateIntRange(name.Length, minLength, maxLength, errorMsg);
             Name = name;
-            Tasks = new List<ITask>();
-            ActivityHistory = new List<string>();
-
         }
         public string Name { get; }
 
-        public IList<ITask> Tasks { get; }
+        public IList<ITask> Tasks
+        {
+            get
+            {
+                var copy = new List<ITask>(tasks);
+                return copy;
+            }
+        }
 
         public IList<string> ActivityHistory
         {
@@ -33,8 +39,7 @@ namespace Team.Model
             {
                 var copy = new List<string>(ActivityHistory);
                 return copy;
-            }
-            private set { ActivityHistory = value; }
+            }         
         }
 
         public void AddActivity(string activity)
