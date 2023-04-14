@@ -4,23 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Team.Core.Contracts;
+using Team.Exeption;
 
 namespace Team.Command
 {
     public class CreateMemberCommand : BaseCommand
     {
+        public const int ExpectedNumberOfArguments = 1;
         public CreateMemberCommand(IList<string> commandParameters, IRepository repository) : base(commandParameters, repository)
         {
-            CommandParameters = commandParameters;
-            Repository = repository;
         }
-
-        public object CommandParameters { get; }
-        public IRepository Repository { get; }
-
         public override string Execute()
         {
-            throw new NotImplementedException();
+            if (this.CommandParameters.Count < ExpectedNumberOfArguments)
+            {
+                throw new InvalidUserInputException($"Invalid number of arguments. Expected: {ExpectedNumberOfArguments}, Received: {this.CommandParameters.Count}");
+            }
+
+
+            string name = this.CommandParameters[0];
+
+            var member = this.Repository.CreateMember(name);
+            return $"Member '{member.Name}' was created.";
         }
     }
 }

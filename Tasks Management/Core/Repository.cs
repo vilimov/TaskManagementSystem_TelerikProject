@@ -86,9 +86,15 @@ namespace Team.Core
             return feedback;
         }
 
-        public IMember CreateMember(string name, ITask task)
+        public IMember CreateMember(string name)
         {
-            throw new NotImplementedException();
+            if(members.Any(m => m.Name == name))
+            {
+                throw new ArgumentException($"Member with name '{name}' already exists.");
+            }
+            var newMember = new Member(name);
+            members.Add(newMember);
+            return newMember;
         }
 
         public IStory CreateStory(string title, string description, string bordName, PriorityType priority, SizeType size, StoryStatusType status, string assignee)
