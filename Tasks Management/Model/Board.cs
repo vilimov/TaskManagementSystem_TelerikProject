@@ -44,7 +44,7 @@ namespace Team.Model
 
         public void AddActivity(string activity)
         {
-            ActivityHistory.Add(activity);
+            activityHistory.Add(activity);
         }
 
         public void AddTask(ITask task)

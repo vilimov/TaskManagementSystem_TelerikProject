@@ -86,7 +86,7 @@ namespace Team.Core
             doesTaskTitleExists(title);
             var myBoard = BoardNameExists(bordName);
             var taskID = GenerateUniqueTaskId();
-            var feedback = new Feedback(taskID, title, description, rating, statusType);
+            var feedback = new Feedback(taskID, title, description, rating);
             myBoard.AddTask(feedback);
             this.tasks.Add(feedback);
             return feedback;

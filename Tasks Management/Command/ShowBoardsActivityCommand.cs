@@ -31,11 +31,14 @@ namespace Team.Command
         {
             var board = Repository.Boards.Where(b => b.Name == name);
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"Board {board} has the following activities:");
+            sb.AppendLine($"Board {name} has the following activities:");
             //ToDo Not implemented well - Milko
             foreach (var activity in board)
             {
-                sb.AppendLine(activity.Name);
+                foreach (var item in activity.ActivityHistory)
+                { 
+                    sb.AppendLine(item);
+                }
             }
             sb.Append("---------------");
             return sb.ToString();
