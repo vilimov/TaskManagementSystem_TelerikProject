@@ -33,7 +33,13 @@ namespace Team.Command
             //  [4] - priority of the task
             //  [5] - severity of the task
             //  [6] - assignee of the task
-
+            //HACK - Please note all Strings that contain spaces must be provided with << and >> example: <<This is the titel of the bug>>
+            /*HACK - All parameters that start with << must be at the first positions - example: 
+                 Title gets[0]
+                 description gets[1]
+                 listOfSteps gets[3]
+            Doesnt matter the order they are entered in the console, doesnt matter how they are used in the commands
+             */
             string title = this.CommandParameters[0];
             string description = this.CommandParameters[1];
             string listOfSteps = this.CommandParameters[2];
