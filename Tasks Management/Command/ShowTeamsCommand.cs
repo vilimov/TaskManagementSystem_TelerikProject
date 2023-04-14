@@ -11,14 +11,26 @@ namespace Team.Command
     {
         public ShowTeamsCommand(IRepository repository) : base(repository)
         {
-            Repository = repository;
         }
-
-        public IRepository Repository { get; }
 
         public override string Execute()
         {
-            throw new NotImplementedException();
+            if (this.Repository.Teams.Count > 0)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("All Teams:");
+                foreach (var team in this.Repository.Teams)
+                {
+                    sb.AppendLine(team.Name);
+                }
+                sb.Append("---------------");
+                return sb.ToString();
+            }
+            else
+            {
+                string message = "No Teams created";
+                return message;
+            }
         }
     }
 }

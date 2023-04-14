@@ -11,7 +11,7 @@ namespace Team.Command
     public class ShowMembersActivityCommand : BaseCommand
     {
         public const int ExpectedNumberOfArguments = 1;
-        public ShowMembersActivityCommand(IRepository repository) : base(repository)
+        public ShowMembersActivityCommand(IList<string> commandParameters, IRepository repository) : base(commandParameters, repository)
         {
         }
 
@@ -21,7 +21,7 @@ namespace Team.Command
             ValidateInputParametersCount(CommandParameters, ExpectedNumberOfArguments);
 
             // Parameters:
-            //  [0] - Name of the Board
+            //  [0] - Name of the Member
             string name = this.CommandParameters[0];
             if (!Repository.Members.Any(m => m.Name == name))
             {
@@ -34,7 +34,7 @@ namespace Team.Command
         {
             var member = Repository.Members.Where(m => m.Name == name);
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"Member {member} has the following activities:");
+            sb.AppendLine($"Member {name} has the following activities:");
             foreach (var activity in member)
             {
                 sb.AppendLine();

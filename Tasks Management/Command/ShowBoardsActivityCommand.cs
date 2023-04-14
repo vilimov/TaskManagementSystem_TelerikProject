@@ -31,8 +31,7 @@ namespace Team.Command
         {
             var board = Repository.Boards.Where(b => b.Name == name);
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"Board {name} has the following activities:");
-            //ToDo Not implemented well - Milko
+            sb.AppendLine($"Board {name} has the following activities:");            
             foreach (var activity in board)
             {
                 foreach (var item in activity.ActivityHistory)

@@ -49,7 +49,7 @@ namespace Team.Core
                 case CommandType.ShowBoardsActivity:
                     return new ShowBoardsActivityCommand(commandParameters, repository);
                 case CommandType.ShowMembersActivity:
-                    return new ShowMembersActivityCommand(repository);
+                    return new ShowMembersActivityCommand(commandParameters, repository);
                 //Mila
                 case CommandType.ShowMembers:
                     //ShowMembers - lists all Created Members in the application
@@ -59,9 +59,9 @@ namespace Team.Core
                     return new ShowTeamBoardsCommand(commandParameters, repository);
                 //Koci
                 case CommandType.ShowTeamMembers:
-                    return new ShowTeamMembersCommand(repository);
+                    return new ShowTeamMembersCommand(commandParameters, repository);
                 case CommandType.ShowTeamsActivity:
-                    return new ShowTeamsActivityCommand(repository);
+                    return new ShowTeamsActivityCommand(commandParameters, repository);
                 //
                 case CommandType.ShowTeams:
                     return new ShowTeamsCommand(repository);
