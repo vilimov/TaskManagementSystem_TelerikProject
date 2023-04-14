@@ -28,20 +28,20 @@ namespace Team.Command
             //  Status of new Bug is active - no need to set
             //  [0] - title of the task - validation in the constructor
             //  [1] - descriotion of the task - validation in the constructor
-            //  [2] - Board in which to be added this task
-            //  [3] - priority of the task
-            //  [4] - severity of the task
-            //  [5] - assignee of the task
-            //  [6] - listOfSteps of the task
+            //  [2] - listOfSteps of the task
+            //  [3] - Board in which to be added this task
+            //  [4] - priority of the task
+            //  [5] - severity of the task
+            //  [6] - assignee of the task
 
             string title = this.CommandParameters[0];
             string description = this.CommandParameters[1];
-            string board = this.CommandParameters[2];
-            PriorityType priority = this.ParsePriorityTypeParameter(this.CommandParameters[3], "priority");
-            SeverityType severity = this.ParseSeverityTypeParameter(this.CommandParameters[4], "severity");
-            string assignee = this.CommandParameters[5];
-            string listOfSteps = this.CommandParameters[6];
-
+            string listOfSteps = this.CommandParameters[2];
+            string board = this.CommandParameters[3];
+            PriorityType priority = this.ParsePriorityTypeParameter(this.CommandParameters[4], "priority");
+            SeverityType severity = this.ParseSeverityTypeParameter(this.CommandParameters[5], "severity");
+            string assignee = this.CommandParameters[6];
+            
             var bug = this.Repository.CreateBug(title, description, board, priority, severity, assignee, listOfSteps);
             return $"Bug with ID {bug.Id} was created.";
         }
