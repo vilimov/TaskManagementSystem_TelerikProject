@@ -81,12 +81,12 @@ namespace Team.Core
             return bug;
         }
 
-        public IFeedback CreateFeedback(string title, string description, int rating, string bordName, FeedbackStatus statusType)
+        public IFeedback CreateFeedback(string title, string description, int rating, string bordName)
         {
             doesTaskTitleExists(title);
             var myBoard = BoardNameExists(bordName);
             var taskID = tasks.Count;
-            var feedback = new Feedback(++taskID, title, description, rating, statusType);
+            var feedback = new Feedback(++taskID, title, description, rating);
             myBoard.AddTask(feedback);
             this.tasks.Add(feedback);
             return feedback;

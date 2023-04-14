@@ -16,10 +16,10 @@ namespace Team.Model
         private const string ratingErrorMsg = "Rating must be a number between {0} and {1}";
 
         private FeedbackStatus statusType;
-        public Feedback(int id, string title, string description,int rating, FeedbackStatus statusType) : base(id, title, description)
+        public Feedback(int id, string title, string description,int rating) : base(id, title, description)
         {
             Validator.ValidateIntRange(rating, ratingMinValue, ratingMaxValue, string.Format(ratingErrorMsg, ratingMinValue, ratingMaxValue));
-            this.StatusType = statusType;
+            StatusType = FeedbackStatus.New;
             Rating = rating;
         }
         public int Rating { get; set; }
