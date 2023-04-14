@@ -104,7 +104,13 @@ namespace Team.Core
 
         public IStory CreateStory(string title, string description, string boardName, PriorityType priority, SizeType size, StoryStatusType status, string assignee)
         {
-            throw new NotImplementedException();
+            doesTaskTitleExists(title);
+            var myBoard = BoardNameExists(boardName);
+            var taskID = GenerateUniqueTaskId();
+            var story = new Story(taskID, title, description, priority, size, status, assignee);
+            myBoard.AddTask(story);
+            this.tasks.Add(story);
+            return story;
         }
 
         public ITeam CreateTeam(string name)
