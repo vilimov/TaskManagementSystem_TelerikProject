@@ -20,10 +20,8 @@ namespace Team.Command
 
         public override string Execute()
         {
-            if (this.CommandParameters.Count < ExpectedNumberOfArguments)
-            {
-                throw new InvalidUserInputException($"Invalid number of arguments. Expected: {ExpectedNumberOfArguments}, Received: {this.CommandParameters.Count}");
-            }
+            ValidateInputParametersCount(CommandParameters, ExpectedNumberOfArguments);
+
             // Parameters:
             //  ID of the task - passed by the Repository
             //  [0] - title of the task - validation in the constructor
