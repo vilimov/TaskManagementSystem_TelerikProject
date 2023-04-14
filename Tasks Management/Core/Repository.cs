@@ -60,6 +60,10 @@ namespace Team.Core
         //public IBoard CreateBoard(string name, ITask task)
         public IBoard CreateBoard(string name, ITeam team)
         {
+            if (boards.Any(b => b.Name == name))
+            {
+                throw new ArgumentException($"Board with name '{name}' already exists.");
+            }
             var newBoard = new Board(name);
             teams.FirstOrDefault(t => t.Name == team.Name).AddBoard(newBoard);
             boards.Add(newBoard);
