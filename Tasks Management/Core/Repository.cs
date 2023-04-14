@@ -58,7 +58,10 @@ namespace Team.Core
         //public IBoard CreateBoard(string name, ITask task)
         public IBoard CreateBoard(string name, ITeam team)
         {
-            throw new NotImplementedException();
+            var newBoard = new Board(name);
+            teams.FirstOrDefault(t => t.Name == team.Name).AddBoard(newBoard);
+            return newBoard;
+
         }
 
         public IBug CreateBug(string title, string description, string bordName, PriorityType priority, 
@@ -106,7 +109,7 @@ namespace Team.Core
 
         public ITeam CreateTeam(string name)
         {
-            var newTeam = new Team.Model.Team(name);
+            var newTeam = new Model.Team(name);
             teams.Add(newTeam);
             return newTeam;
             
