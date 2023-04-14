@@ -29,7 +29,7 @@ namespace Team.Command
 
             var team = Repository.CreateTeam(teamName);
 
-            return $"Team {teamName} added to teams.";
+            return $"Team '{teamName}' was created.";
         }
     }
 }

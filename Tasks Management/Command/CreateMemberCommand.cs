@@ -16,10 +16,7 @@ namespace Team.Command
         }
         public override string Execute()
         {
-            if (this.CommandParameters.Count < ExpectedNumberOfArguments)
-            {
-                throw new InvalidUserInputException($"Invalid number of arguments. Expected: {ExpectedNumberOfArguments}, Received: {this.CommandParameters.Count}");
-            }
+            ValidateInputParametersCount(CommandParameters, ExpectedNumberOfArguments);
 
 
             string name = this.CommandParameters[0];
