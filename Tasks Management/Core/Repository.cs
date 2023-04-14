@@ -99,12 +99,17 @@ namespace Team.Core
 
         public IStory CreateStory(string title, string description, string bordName, PriorityType priority, SizeType size, StoryStatusType status, string assignee)
         {
-            throw new NotImplementedException();
+            var taskID = tasks.Count;
+            var newStory = new Story(++taskID, title, description, priority, size, status, assignee);
+            return newStory;
         }
 
-        public ITeam CreateTeam(string name, Member member, Board board)
+        public ITeam CreateTeam(string name)
         {
-            throw new NotImplementedException();
+            var newTeam = new Team.Model.Team(name);
+            teams.Add(newTeam);
+            return newTeam;
+            
         }
 
         //Check for unique Task Title
