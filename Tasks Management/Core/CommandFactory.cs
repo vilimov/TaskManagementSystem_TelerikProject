@@ -65,6 +65,10 @@ namespace Team.Core
                 //
                 case CommandType.ShowTeams:
                     return new ShowTeamsCommand(repository);
+                case CommandType.ChangeBugPriority:
+                    return new ChangeBugPriorityCommand(commandParameters, repository);
+                case CommandType.ChangeBugSeverity:
+                    return new ChangeBugSeverityCommand(commandParameters, repository);
                 default:
                     throw new InvalidUserInputException($"Command with name: {commandType} doesn't exist!");
 

@@ -77,5 +77,10 @@ namespace Team.Model
             Priority = newPriority;
             AddHistory($"Priority changed to {newPriority}.");
         }
+        public void ChangeSeverity(SeverityType newSeverity)
+        {
+            Severity = newSeverity;
+            AddHistory($"Severity changed to{newSeverity}");
+        }
     }
 }
