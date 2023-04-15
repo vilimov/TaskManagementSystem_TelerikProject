@@ -28,7 +28,7 @@ namespace Team.Command
             var task = this.Repository.FindTask(taskId);
             if (!(task is Bug bug))
             {
-                throw new InvalidUserInputException("The provided task ID does not correspond to a Bug.");
+                throw new InvalidUserInputException("The provided task ID was not found in Bug.");
             }
 
             bug.ChangePriority(newPriority);
