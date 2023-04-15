@@ -139,6 +139,18 @@ namespace Team.Core
             return newTeam;
             
         }
+        // New Find task. Used for Changing Enums (Priority/Severity/Status)
+        public ITask FindTask(int taskId)
+        {
+            var task = tasks.FirstOrDefault(t => t.Id == taskId);
+
+            if (task == null)
+            {
+                throw new ArgumentException($"Task with ID {taskId} not found.");
+            }
+
+            return task;
+        }
         //ID ++
         private int GenerateUniqueTaskId()
         {

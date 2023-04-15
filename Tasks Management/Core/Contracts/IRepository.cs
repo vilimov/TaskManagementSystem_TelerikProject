@@ -23,5 +23,6 @@ namespace Team.Core.Contracts
         public IBug CreateBug(string title, string description, string board, PriorityType priority, SeverityType severity, string assignee,string listOfSteps);
         public IStory CreateStory(string title, string description, string board, PriorityType priority, SizeType size, string assignee);
         public IFeedback CreateFeedback(string title, string description, int rating, string board);
+        ITask FindTask(int taskId);
     }
 }

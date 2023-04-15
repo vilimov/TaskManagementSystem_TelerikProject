@@ -38,7 +38,9 @@ namespace Team.Command.Enum
         //Show team's activity.
         ShowTeamsActivity,
         //Show all teams.
-        ShowTeams
+        ShowTeams,
+        // Change Bug Priority
+        ChangeBugPriority
 
         //Change the Priority/Severity/Status of a bug.
         //Change the Priority/Size/Status of a story.

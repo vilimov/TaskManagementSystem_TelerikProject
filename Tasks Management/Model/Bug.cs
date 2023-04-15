@@ -72,6 +72,10 @@ namespace Team.Model
                 assignee = value;
             }
         }
-
+        public void ChangePriority(PriorityType newPriority)
+        {
+            Priority = newPriority;
+            AddHistory($"Priority changed to {newPriority}.");
+        }
     }
 }
