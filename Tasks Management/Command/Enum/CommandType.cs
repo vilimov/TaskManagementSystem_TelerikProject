@@ -43,6 +43,12 @@ namespace Team.Command.Enum
         ChangeBugPriority,
         // Change Bug Severity
         ChangeBugSeverity,
+        // Change Story Priority
+        ChangeStoryPriority,
+        // Change Story Size
+        ChangeStorySize,
+        // Change Story Status
+        ChangeStoryStatus
 
         //Change the Priority/Severity/Status of a bug.
         //Change the Priority/Size/Status of a story.

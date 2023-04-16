@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using Team.Core.Contracts;
 using Team.Exeption;
 
@@ -32,7 +28,7 @@ namespace Team.Command
         {
             var team = Repository.Teams.Where(t => t.Name == name);
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"Team {name} has the following activities:");            
+            sb.AppendLine($"Team {name} has the following activities:");
             foreach (var activity in team)
             {
                 sb.AppendLine();

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Team.Core.Contracts;
+using Team.Exeption;
 using Team.Model;
 using Team.Model.Enum;
 using Team.Model.Interface;
@@ -212,5 +214,18 @@ namespace Team.Core
             throw new ArgumentException($"Person with name {memberName} is not in the {myTeamm.Name} team");
         }
 
+        // Change Enum Value
+        public static void ChangeEnumValue<T>(T obj, string propertyName, string enumValueName) where T : class
+        {
+            Type type = obj.GetType();
+            PropertyInfo prop = type.GetProperty(propertyName);
+            Type propType = prop.PropertyType;
+
+            if (propType.IsEnum)
+            {
+                object enumValue = Enum.Parse(propType, enumValueName);
+                prop.SetValue(obj, enumValue);
+            }
+        }            
     }
 }
