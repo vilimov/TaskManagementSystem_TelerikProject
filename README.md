@@ -7,7 +7,7 @@ small team of developers to organize and manage their work tasks.
 ## Functional Requirements
 
 The application *must* support multiple **teams**.
-<span style="color: red;">must</span>
+
 Each team *must* have a **name**, **members**, and **boards**.
 - The name *must* be unique in the application.
 - The name is a string between 5 and 15 symbols.
