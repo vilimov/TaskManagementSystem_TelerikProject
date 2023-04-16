@@ -1,5 +1,29 @@
 CreateTeam Team1
+CreateTeam Team2
 CreateMember Member1
+CreateMember Member2
+CreateMember Member3
+CreateMember Member4
 AddMemberToTeam Member1 Team1
+AddMemberToTeam Member2 Team1
+AddMemberToTeam Member3 Team1
+AddMemberToTeam Member4 Team1
+AddMemberToTeam Member1 Team2
+AddMemberToTeam Member2 Team2
 CreateBoard Board1 Team1
-CreateBug  <<The program freezes when the Log In button is clicked.>> <<This needs to be fixed quickly!>> Board1 High Critical Member1 <<1. Open the application; 2.Click "Log In"; 3. The application freezes!>>
+CreateBoard Board2 Team2
+CreateBoard Board2 Team1
+CreateBoard Board3 Team1
+CreateBug  Bug_Name_1 Bug_Description_1 Board1 High Critical Member1 <<StepsToReproduce>>
+CreateBug <<The prg freezes when the Log In button is clicked.>> <<This needs to be fixed quickly!>> Board1 High Critical Member1 <<1. Open the application; 2.Click "Log In"; 3. The application freezes!>>
+CreateFeedback FeedbackTitle FeedbackDescription 1 Board1
+CreateStory newStory_1 Description1 Board1 Low Small Member5
+CreateStory newStory_2 Description2 Board2 Medium Medium Done Member2
+CreateStory newStory_1 Description1 Board1 Low Small Member1
+ShowBoardsActivity Board1
+ShowMembersActivity Member1
+ShowMembers
+ShowTeamBoards Team1
+ShowTeamMembers Team1
+ShowTeamsActivity Team1
+ShowTeams
