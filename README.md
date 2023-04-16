@@ -9,14 +9,14 @@ small team of developers to organize and manage their work tasks.
 The application *must* support multiple **teams**.
 
 Each team *must* have a **name**, **members**, and **boards**.
-	- The name *must* be unique in the application.
-	- The name is a string between 5 and 15 symbols.
+- The name *must* be unique in the application.
+- The name is a string between 5 and 15 symbols.
 Each member *must* have a **name**, **list of tasks** and **activity history**.
-	- The name *must* be unique in the application.
-	- The name is a string between 5 and 15 symbols.
+- The name *must* be unique in the application.
+- The name is a string between 5 and 15 symbols.
 Each board *must* have a **name**, **list of tasks** and **activity history**.
-	- Name *must* be unique in the team.
-	- Name is a string between 5 and 10 symbols.
+- Name *must* be unique in the team.
+- Name is a string between 5 and 10 symbols.
 
 There are 3 types of tasks: **bug**, **story**, and **feedback**.
 	
@@ -52,7 +52,7 @@ comments** and a **list of changes history**.
 - Title is a string between 10 and 50 symbols.
 - Description is a string between 10 and 500 symbols.
 - Rating is an integer.
-- Status is one of the following: New, Unscheduled, Scheduled, or Done.
+- Status is one of the following: **New**, **Unscheduled**, **Scheduled**, or **Done**.
 - Comments is a list of comments (string messages with author).
 - History is a list of all changes (string messages) that were done to the	feedback.
 
