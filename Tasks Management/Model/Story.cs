@@ -39,6 +39,10 @@ namespace Team.Model
             }
             private set
             {
+                if (History.Count != 0)
+                {
+                    AddHistory($"Story priority changed from {priority} to {value}");
+                }
                 priority = value;
             }
         }
@@ -67,6 +71,10 @@ namespace Team.Model
             }
             private set
             {
+                if (History.Count != 0)
+                {
+                    AddHistory($"Story status changed from {status} to {value}");
+                }
                 status = value;
             }
         }
