@@ -13,19 +13,16 @@ namespace Team.Command
         public override string Execute()
         {
             ValidateInputParametersCount(CommandParameters, ExpectedNumberOfArguments);
-
+            ParseIntParameter(CommandParameters[0], "ID");
 
             // Parameters:
             // [0] - ID
             // [1] - New Size
-
             IStory obj = (Story)Repository.Tasks.FirstOrDefault(s => s.Id == int.Parse(CommandParameters[0]));
             var currentSize = obj.Size;
             var newSize = CommandParameters[1];
-            Console.WriteLine($"Old Size: { currentSize}");
             string message = $"Story size changed from {currentSize} to {newSize}";
-            Core.Repository.ChangeEnumValue(obj, "Size", newSize);            
-            Console.WriteLine($"New Size: {newSize}");
+            Core.Repository.ChangeEnumValue(obj, "Size", newSize);  
             return message;
         }
     }

@@ -220,11 +220,19 @@ namespace Team.Core
             Type type = obj.GetType();
             PropertyInfo prop = type.GetProperty(propertyName);
             Type propType = prop.PropertyType;
-
+            
             if (propType.IsEnum)
             {
-                object enumValue = Enum.Parse(propType, enumValueName);
-                prop.SetValue(obj, enumValue);
+                if (Enum.TryParse(propType, enumValueName, out var enumValue))
+                {
+                    prop.SetValue(obj, enumValue);
+                }
+                else
+                {
+                    throw new InvalidUserInputException($"{type.Name} '{propertyName}' does not contain value '{enumValueName}'");
+                }
+                    
+                
             }
         }            
     }
