@@ -91,8 +91,13 @@ namespace Team.Model
                 assignee = value;
             }
         }
-        //ToDo Dali ne e po-dobre da e w Task?
-        public void AddComment(string commentText, IMember author)
+       /* public void AddComment(string commentText, IMember author)
+        {
+            string oldName = Assignee;
+            //Assignee = newAssignee;
+            AddHistory($"Assignee changed from {oldName} to {Assignee}");
+        }*/
+        public void ChangeAssignee(string newAssignee)
         {
             string oldName = Assignee;
             Assignee = newAssignee;
