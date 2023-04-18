@@ -21,8 +21,8 @@ namespace Team.Command
             IStory obj = (Story)Repository.Tasks.FirstOrDefault(s => s.Id == int.Parse(CommandParameters[0]));
             var currentSize = obj.Size;
             var newSize = CommandParameters[1];
+            Core.Repository.ChangeEnumValue(obj, "Size", newSize);
             string message = $"Story size changed from {currentSize} to {newSize}";
-            Core.Repository.ChangeEnumValue(obj, "Size", newSize);  
             return message;
         }
     }

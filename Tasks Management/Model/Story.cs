@@ -16,11 +16,11 @@ namespace Team.Model
         private StoryStatusType status;
         private string assignee;
 
-        public Story(int id, 
-                    string title, 
-                    string description, 
-                    PriorityType priority, 
-                    SizeType size, 
+        public Story(int id,
+                    string title,
+                    string description,
+                    PriorityType priority,
+                    SizeType size,
                     string assignee)
                     : base(id, title, description)
         {
@@ -39,10 +39,9 @@ namespace Team.Model
             }
             private set
             {
-                //AddHistory($"Priority changed from {this.priority} to {value}");
                 priority = value;
             }
-        }      
+        }
 
         public SizeType Size
         {
@@ -52,11 +51,13 @@ namespace Team.Model
             }
             private set
             {
-                //AddHistory($"Size changed from {this.size} to {value}");
-                Console.WriteLine("Run Here");
+                if (History.Count != 0)
+                {
+                    AddHistory($"Story size changed from {size} to {value}");
+                }
                 size = value;
             }
-        }            
+        }
 
         public StoryStatusType Status
         {
@@ -66,7 +67,6 @@ namespace Team.Model
             }
             private set
             {
-                //AddHistory($"Status changed from {this.status} to {value}");
                 status = value;
             }
         }
@@ -82,8 +82,7 @@ namespace Team.Model
                 //AddHistory($"Assignee changed from {this.assignee} to {value}");
                 assignee = value;
             }
-        }
-        //ToDo Dali ne e po-dobre da e w Task?
+        }        
         public void AddComment(string commentText, IMember author)
         {
             Comments.Add(new Comment(commentText, author));

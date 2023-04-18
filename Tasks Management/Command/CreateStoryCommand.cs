@@ -24,8 +24,7 @@ namespace Team.Command
             string description = this.CommandParameters[1];
             string boardName = this.CommandParameters[2];
             PriorityType priority = ParsePriorityTypeParameter(this.CommandParameters[3], "priority");
-            SizeType size = ParseSizeTypeParameter(this.CommandParameters[4], "size");
-            //StoryStatusType status = ParseStoryStatusTypeParameter(this.CommandParameters[5], "status");
+            SizeType size = ParseSizeTypeParameter(this.CommandParameters[4], "size");            
             string assignee = this.CommandParameters[5];
 
             var story = this.Repository.CreateStory(title, description, boardName, priority, size, assignee);
