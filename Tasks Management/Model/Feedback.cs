@@ -21,17 +21,18 @@ namespace Team.Model
             Validator.ValidateIntRange(rating, ratingMinValue, ratingMaxValue, string.Format(ratingErrorMsg, ratingMinValue, ratingMaxValue));
             StatusType = FeedbackStatus.New;
             Rating = rating;
+            AddHistory($"Feedback with name {title} and ID {id} was created!");
         }
-        public int Rating { get; set; }
+        public int Rating { get; private set; }
         public FeedbackStatus StatusType 
         {
             get
             {
                 return statusType;
             }
-            set
+            private set
             {
-                AddHistory($"Status changed from {this.statusType} to {value}");
+                //AddHistory($"Status changed from {this.statusType} to {value}");
                 this.statusType = value;
             }
         }
@@ -39,6 +40,19 @@ namespace Team.Model
         {
             Comments.Add(new Comment(commentText, author));
             AddHistory($"{author.Name} added a comment: {commentText}");
+        }
+
+        public void ChangeFeedbackStatus(FeedbackStatus newStatusType)
+        {
+            StatusType = newStatusType;
+            AddHistory($"Feedback Status changed to {StatusType}");
+        }
+
+        public void ChangeRating(int newRating)
+        {
+            Validator.ValidateIntRange(newRating, ratingMinValue, ratingMaxValue, string.Format(ratingErrorMsg, ratingMinValue, ratingMaxValue));
+            Rating = newRating;
+            AddHistory($"Rating changed to {Rating}");
         }
     }
 }

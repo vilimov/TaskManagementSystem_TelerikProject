@@ -11,5 +11,10 @@ namespace Team.Model.Interface
     {
         FeedbackStatus StatusType { get; }
         int Rating { get; }
+        public void AddComment(string commentText, IMember author);
+
+        public void ChangeFeedbackStatus(FeedbackStatus newStatusType);
+        public void ChangeRating(int newRating);
+
     } 
 }

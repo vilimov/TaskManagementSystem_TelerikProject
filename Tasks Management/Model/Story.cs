@@ -28,6 +28,7 @@ namespace Team.Model
             Size = size;
             Status = StoryStatusType.NotDone;
             Assignee = assignee;
+            AddHistory($"Story with name {title} and ID {id} was created!");
         }
 
         public PriorityType Priority
@@ -38,7 +39,7 @@ namespace Team.Model
             }
             private set
             {
-                AddHistory($"Priority changed from {this.priority} to {value}");
+                //AddHistory($"Priority changed from {this.priority} to {value}");
                 priority = value;
             }
         }      
@@ -51,7 +52,8 @@ namespace Team.Model
             }
             private set
             {
-                AddHistory($"Size changed from {this.size} to {value}");
+                //AddHistory($"Size changed from {this.size} to {value}");
+                Console.WriteLine("Run Here");
                 size = value;
             }
         }            
@@ -64,7 +66,7 @@ namespace Team.Model
             }
             private set
             {
-                AddHistory($"Status changed from {this.status} to {value}");
+                //AddHistory($"Status changed from {this.status} to {value}");
                 status = value;
             }
         }
@@ -77,7 +79,7 @@ namespace Team.Model
             }
             private set
             {
-                AddHistory($"Assignee changed from {this.assignee} to {value}");
+                //AddHistory($"Assignee changed from {this.assignee} to {value}");
                 assignee = value;
             }
         }
