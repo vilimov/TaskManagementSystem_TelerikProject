@@ -85,9 +85,9 @@ namespace Team.Core
                     throw new InvalidUserInputException($"Command with name: {commandType} doesn't exist!");
 
                     //ToDo
-                    //Change the Priority/Severity/Status of a bug.
+                    //DONE - Change the Priority/Severity/Status of a bug.
                     //Change the Priority/Size/Status of a story.
-                    //Change the Rating/Status of a feedback
+                    //DONE - Change the Rating/Status of a feedback
                     //Assign/Unassign a task to a person.
                     //Add comment to a task
             }
