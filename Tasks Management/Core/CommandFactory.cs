@@ -81,15 +81,19 @@ namespace Team.Core
                     return new ChangeFeedbackRatingCommand(commandParameters, repository);
                 case CommandType.ChangeFeedbackStatus:
                     return new ChangeFeedbackStatusCommand(commandParameters, repository);
+                case CommandType.AddCommentToTask:
+                    return new AddCommentToTaskCommand(commandParameters, repository);
+                case CommandType.ChangeAssignee:
+                    return new ChangeAssigneeCommand(commandParameters, repository);
                 default:
                     throw new InvalidUserInputException($"Command with name: {commandType} doesn't exist!");
 
                     //ToDo
-                    //Change the Priority/Severity/Status of a bug.
+                    //DONE - Change the Priority/Severity/Status of a bug.
                     //Change the Priority/Size/Status of a story.
-                    //Change the Rating/Status of a feedback
+                    //DONE - Change the Rating/Status of a feedback
                     //Assign/Unassign a task to a person.
-                    //Add comment to a task
+                    //DONE Add comment to a task
             }
 
         }

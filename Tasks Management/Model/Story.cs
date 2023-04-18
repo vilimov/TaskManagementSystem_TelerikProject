@@ -82,11 +82,13 @@ namespace Team.Model
                 //AddHistory($"Assignee changed from {this.assignee} to {value}");
                 assignee = value;
             }
-        }        
+        }
+        //ToDo Dali ne e po-dobre da e w Task?
         public void AddComment(string commentText, IMember author)
         {
-            Comments.Add(new Comment(commentText, author));
-            AddHistory($"{author.Name} added a comment: {commentText}");
+            string oldName = Assignee;
+            Assignee = newAssignee;
+            AddHistory($"Assignee changed from {oldName} to {Assignee}");
         }
     }
 }

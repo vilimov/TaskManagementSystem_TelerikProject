@@ -21,7 +21,6 @@ namespace Team.Model
             Validator.ValidateIntRange(rating, ratingMinValue, ratingMaxValue, string.Format(ratingErrorMsg, ratingMinValue, ratingMaxValue));
             StatusType = FeedbackStatus.New;
             Rating = rating;
-            AddHistory($"Feedback with name {title} and ID {id} was created!");
         }
         public int Rating { get; private set; }
         public FeedbackStatus StatusType 
@@ -32,7 +31,6 @@ namespace Team.Model
             }
             private set
             {
-                //AddHistory($"Status changed from {this.statusType} to {value}");
                 this.statusType = value;
             }
         }
