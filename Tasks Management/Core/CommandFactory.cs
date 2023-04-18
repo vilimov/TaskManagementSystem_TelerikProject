@@ -83,6 +83,8 @@ namespace Team.Core
                     return new ChangeFeedbackStatusCommand(commandParameters, repository);
                 case CommandType.AddCommentToTask:
                     return new AddCommentToTaskCommand(commandParameters, repository);
+                case CommandType.ChangeAssignee:
+                    return new ChangeAssigneeCommand(commandParameters, repository);
                 default:
                     throw new InvalidUserInputException($"Command with name: {commandType} doesn't exist!");
 
@@ -91,7 +93,7 @@ namespace Team.Core
                     //Change the Priority/Size/Status of a story.
                     //DONE - Change the Rating/Status of a feedback
                     //Assign/Unassign a task to a person.
-                    //Add comment to a task
+                    //DONE Add comment to a task
             }
 
         }

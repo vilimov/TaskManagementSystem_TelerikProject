@@ -56,12 +56,14 @@ namespace Team.Command.Enum
         // Change Feedback Status
         ChangeFeedbackStatus,
         //Add Comment to Task
-        AddCommentToTask
+        AddCommentToTask,
+        //Change Assignee with new one
+        ChangeAssignee
 
-        //Change the Priority/Severity/Status of a bug.
-        //Change the Priority/Size/Status of a story.
-        //Change the Rating/Status of a feedback
-        //Assign/Unassign a task to a person.
-        //Add comment to a task
+        //DOEN - Change the Priority/Severity/Status of a bug.
+        //DONE Change the Priority/Size/Status of a story.
+        //DONE Change the Rating/Status of a feedback
+        //Assign/Unassign a task to a person. - ChangeAssignee
+        //DONE - Add comment to a task
     }
 }
