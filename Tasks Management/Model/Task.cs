@@ -26,6 +26,7 @@ namespace Team.Model
             Id = id;
             Title = title;
             Description = description;
+            AddHistory($"{this.GetType} with name {title} and ID {id} was created!");
         }
         public int Id { get; }
         public string Title { get; }
@@ -50,6 +51,7 @@ namespace Team.Model
         public void AddComment(IComment comment)
         {
             comments.Add(comment);
+            AddHistory($"New Comment Added by {comment.Author}");
         }
 
         public void RemoveComment(IComment comment)

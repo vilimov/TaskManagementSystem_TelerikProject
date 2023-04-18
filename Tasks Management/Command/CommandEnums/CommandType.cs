@@ -54,7 +54,9 @@ namespace Team.Command.Enum
         // Change Feedback Rating
         ChangeFeedbackRating,
         // Change Feedback Status
-        ChangeFeedbackStatus
+        ChangeFeedbackStatus,
+        //Add Comment to Task
+        AddCommentToTask
 
         //Change the Priority/Severity/Status of a bug.
         //Change the Priority/Size/Status of a story.

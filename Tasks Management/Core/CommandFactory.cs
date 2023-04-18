@@ -81,6 +81,8 @@ namespace Team.Core
                     return new ChangeFeedbackRatingCommand(commandParameters, repository);
                 case CommandType.ChangeFeedbackStatus:
                     return new ChangeFeedbackStatusCommand(commandParameters, repository);
+                case CommandType.AddCommentToTask:
+                    return new AddCommentToTaskCommand(commandParameters, repository);
                 default:
                     throw new InvalidUserInputException($"Command with name: {commandType} doesn't exist!");
 
