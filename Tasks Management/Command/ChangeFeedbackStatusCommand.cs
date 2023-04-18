@@ -32,7 +32,7 @@ namespace Team.Command
                 throw new InvalidUserInputException("The provided task ID was not found in Feedback");
             }
             fb.ChangeFeedbackStatus(newFBStatus);
-            return $"Feedback Status changed ";
+            return $"Feedback Status changed to {newFBStatus}";
         }
     }
 }
