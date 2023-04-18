@@ -28,6 +28,7 @@ namespace Team.Model
             Size = size;
             Status = StoryStatusType.NotDone;
             Assignee = assignee;
+            AddHistory($"Story with name {title} and ID {id} was created!");
         }
 
         public PriorityType Priority

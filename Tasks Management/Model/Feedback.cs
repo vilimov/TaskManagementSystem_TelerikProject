@@ -31,7 +31,6 @@ namespace Team.Model
             }
             private set
             {
-                //AddHistory($"Status changed from {this.statusType} to {value}");
                 this.statusType = value;
             }
         }
