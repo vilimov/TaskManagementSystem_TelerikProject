@@ -26,7 +26,7 @@ namespace Team.Model
             Id = id;
             Title = title;
             Description = description;
-            AddHistory($"{this.GetType} with name {title} and ID {id} was created!");
+            AddHistory($"{this.GetType().Name} with name {title} and ID {id} was created!");
         }
         public int Id { get; }
         public string Title { get; }
