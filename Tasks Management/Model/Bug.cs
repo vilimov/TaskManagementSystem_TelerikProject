@@ -87,5 +87,11 @@ namespace Team.Model
             Status = newStatus;
             AddHistory($"Severity changed to{newStatus}");
         }
+        public void ChangeAssignee(string newAssignee)
+        {
+            string oldName = Assignee;
+            Assignee = newAssignee;
+            AddHistory($"Assignee changed from {oldName} to {Assignee}");
+        }
     }
 }
