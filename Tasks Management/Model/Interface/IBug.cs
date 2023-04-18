@@ -16,6 +16,7 @@ namespace Team.Model.Interface
         public string Assignee { get; }
         public void ChangePriority(PriorityType newPriority);
         public void ChangeSeverity(SeverityType newSeverity);
+        public void ChangeStatus(StatusType newStatus);
 
     }
 }

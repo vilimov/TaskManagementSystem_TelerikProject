@@ -84,5 +84,13 @@ namespace Team.Command
             }
             throw new InvalidUserInputException($"Invalid value for {parameterName}. Please select NotDone, InProgress or Done");
         }
+        protected StatusType ParseStatusTypeParameter(string value, string parameterName)
+        {
+            if (System.Enum.TryParse(value, true, out StatusType result))
+            {
+                return result;
+            }
+            throw new InvalidUserInputException($"Invalid value for {parameterName}. Please select Active and Fixed");
+        }
     }
 }

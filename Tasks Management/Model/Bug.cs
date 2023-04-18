@@ -82,5 +82,10 @@ namespace Team.Model
             Severity = newSeverity;
             AddHistory($"Severity changed to{newSeverity}");
         }
+        public void ChangeStatus(StatusType newStatus)
+        {
+            Status = newStatus;
+            AddHistory($"Severity changed to{newStatus}");
+        }
     }
 }
