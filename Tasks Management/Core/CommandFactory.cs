@@ -69,12 +69,18 @@ namespace Team.Core
                     return new ChangeBugPriorityCommand(commandParameters, repository);
                 case CommandType.ChangeBugSeverity:
                     return new ChangeBugSeverityCommand(commandParameters, repository);
+                case CommandType.ChangeBugStatus:
+                    return new ChangeBugStatusCommand(commandParameters, repository);
                 case CommandType.ChangeStoryPriority:
                     return new ChangeStoryPriorityCommand(commandParameters, repository);
                 case CommandType.ChangeStorySize:
                     return new ChangeStorySizeCommand(commandParameters, repository);
                 case CommandType.ChangeStoryStatus:
                     return new ChangeStoryStatusCommand(commandParameters, repository);
+                case CommandType.ChangeFeedbackRating:
+                    return new ChangeFeedbackRatingCommand(commandParameters, repository);
+                case CommandType.ChangeFeedbackStatus:
+                    return new ChangeFeedbackStatusCommand(commandParameters, repository);
                 default:
                     throw new InvalidUserInputException($"Command with name: {commandType} doesn't exist!");
 
