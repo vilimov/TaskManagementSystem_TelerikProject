@@ -27,42 +27,34 @@ namespace Team.Core
 
             switch (commandType)
             {
-                //Milko
                 case CommandType.AddMemberToTeam:
                     return new AddMemberToTeamCommand(commandParameters, repository);
                 case CommandType.CreateBoard:
                     return new CreateBoardCommand(commandParameters, repository);
-                //Mila Done
                 case CommandType.CreateBug:
                     return new CreateBugCommand(commandParameters, repository);
                 case CommandType.CreateFeedback:
                     return new CreateFeedbackCommand(commandParameters, repository);
-                //Koci
                 case CommandType.CreateMember:
                     return new CreateMemberCommand(commandParameters, repository);
                 case CommandType.CreateStory:
                     return new CreateStoryCommand(commandParameters, repository);
-                //
                 case CommandType.CreateTeam:
                     return new CreateTeamCommand(commandParameters, repository);
-                //Milko
                 case CommandType.ShowBoardsActivity:
                     return new ShowBoardsActivityCommand(commandParameters, repository);
                 case CommandType.ShowMembersActivity:
                     return new ShowMembersActivityCommand(commandParameters, repository);
-                //Mila
                 case CommandType.ShowMembers:
                     //ShowMembers - lists all Created Members in the application
                     return new ShowMembersCommand(repository);
                 case CommandType.ShowTeamBoards:
                     //ShowTeamBoards - lists all doards for specific Team in the application
                     return new ShowTeamBoardsCommand(commandParameters, repository);
-                //Koci
                 case CommandType.ShowTeamMembers:
                     return new ShowTeamMembersCommand(commandParameters, repository);
                 case CommandType.ShowTeamsActivity:
                     return new ShowTeamsActivityCommand(commandParameters, repository);
-                //
                 case CommandType.ShowTeams:
                     return new ShowTeamsCommand(repository);
                 case CommandType.ChangeBugPriority:
@@ -85,6 +77,12 @@ namespace Team.Core
                     return new AddCommentToTaskCommand(commandParameters, repository);
                 case CommandType.ChangeAssignee:
                     return new ChangeAssigneeCommand(commandParameters, repository);
+                case CommandType.ListTasks:
+                    return new ListTasksCommand(commandParameters, repository);
+                case CommandType.List:
+                    return new ListCommand(commandParameters, repository);
+                case CommandType.ListTasksWithAssignee:
+                    return new ListTasksWithAssigneeCommand(commandParameters, repository);
                 default:
                     throw new InvalidUserInputException($"Command with name: {commandType} doesn't exist!");
 

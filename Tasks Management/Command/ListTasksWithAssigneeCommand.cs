@@ -7,9 +7,9 @@ using Team.Core.Contracts;
 
 namespace Team.Command
 {
-    public class ListTasks : BaseCommand
+    public class ListTasksWithAssigneeCommand : BaseCommand
     {
-        public ListTasks(IList<string> commandParameters, IRepository repository) : base(commandParameters, repository)
+        public ListTasksWithAssigneeCommand(IList<string> commandParameters, IRepository repository) : base(commandParameters, repository)
         {
         }
 
