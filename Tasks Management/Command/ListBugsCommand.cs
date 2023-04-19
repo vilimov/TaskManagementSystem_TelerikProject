@@ -7,9 +7,9 @@ using Team.Core.Contracts;
 
 namespace Team.Command
 {
-    public class ListCommand : BaseCommand
+    public class ListBugsCommand : BaseCommand
     {
-        public ListCommand(IList<string> commandParameters, IRepository repository) : base(commandParameters, repository)
+        public ListBugsCommand(IList<string> commandParameters, IRepository repository) : base(commandParameters, repository)
         {
         }
 

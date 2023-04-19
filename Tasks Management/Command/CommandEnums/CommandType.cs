@@ -61,8 +61,12 @@ namespace Team.Command.Enum
         ChangeAssignee,
         //List Tasks
         ListTasks,
-        //List Bugs/Stories/Feedback
-        List,
+        //List Bugs
+        ListBugs,
+        //List Stories
+        ListStories,
+        //List Feedback
+        ListFeedback,
         //List Tasks with Assignee
         ListTasksWithAssignee
         

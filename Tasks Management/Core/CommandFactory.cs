@@ -79,8 +79,12 @@ namespace Team.Core
                     return new ChangeAssigneeCommand(commandParameters, repository);
                 case CommandType.ListTasks:
                     return new ListTasksCommand(commandParameters, repository);
-                case CommandType.List:
-                    return new ListCommand(commandParameters, repository);
+                case CommandType.ListBugs:
+                    return new ListBugsCommand(commandParameters, repository);
+                case CommandType.ListStories:
+                    return new ListStoriesCommand(commandParameters, repository);
+                case CommandType.ListFeedback:
+                    return new ListFeedbackCommand(commandParameters, repository);
                 case CommandType.ListTasksWithAssignee:
                     return new ListTasksWithAssigneeCommand(commandParameters, repository);
                 default:
