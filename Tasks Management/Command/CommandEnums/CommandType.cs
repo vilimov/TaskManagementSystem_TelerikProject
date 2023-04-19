@@ -58,7 +58,14 @@ namespace Team.Command.Enum
         //Add Comment to Task
         AddCommentToTask,
         //Change Assignee with new one
-        ChangeAssignee
+        ChangeAssignee,
+        //List Tasks
+        ListTasks,
+        //List Bugs/Stories/Feedback
+        List,
+        //List Tasks with Assignee
+        ListTasksWithAssignee
+        
 
         //DOEN - Change the Priority/Severity/Status of a bug.
         //DONE Change the Priority/Size/Status of a story.
