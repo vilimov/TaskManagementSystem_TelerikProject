@@ -1,4 +1,4 @@
-# ![Team 14 Logo](https://gitlab.com/T.Tsenkova/myfirstprojectgitlab/-/raw/main/02.In-class%20activity/Images/T14Logo.png "Team 14")
+# ![Team 14 Logo](https://gitlab.com/team-147643914/task-managment-system_oop-teamwork/-/raw/main/OtherFiles/T14Logo.png "Team 14")
 ###### This project is developed by Team 14
 ######   **Alpha C-Sharp 47** 
 - [ ] _Tsvetomila Tsenkova_ 	
