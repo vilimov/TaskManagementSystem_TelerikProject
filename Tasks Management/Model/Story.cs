@@ -15,7 +15,7 @@ namespace Team.Model
         private SizeType size;
         private StoryStatusType status;
         private string assignee;
-
+        private int counter = 0;
         public Story(int id,
                     string title,
                     string description,
@@ -28,7 +28,7 @@ namespace Team.Model
             Size = size;
             Status = StoryStatusType.NotDone;
             Assignee = assignee;
-            AddHistory($"Story with name {title} and ID {id} was created!");
+            counter++;
         }
 
         public PriorityType Priority
@@ -39,7 +39,7 @@ namespace Team.Model
             }
             private set
             {
-                if (History.Count != 0)
+                if (counter!=0)
                 {
                     AddHistory($"Story priority changed from {priority} to {value}");
                 }
@@ -55,7 +55,7 @@ namespace Team.Model
             }
             private set
             {
-                if (History.Count != 0)
+                if (counter != 0)
                 {
                     AddHistory($"Story size changed from {size} to {value}");
                 }
@@ -71,7 +71,7 @@ namespace Team.Model
             }
             private set
             {
-                if (History.Count != 0)
+                if (counter != 0)
                 {
                     AddHistory($"Story status changed from {status} to {value}");
                 }
