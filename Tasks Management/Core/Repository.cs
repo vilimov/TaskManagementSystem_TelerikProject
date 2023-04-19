@@ -20,13 +20,7 @@ namespace Team.Core
         private readonly IList<IBoard> boards = new List<IBoard>();
         private readonly IList<ITask> tasks = new List<ITask>();
 
-        private int lastTaskId = 0;
-
-        //TODO - Example of ID tracker
-        /*var nextId = vehicles.Count;
-        var bus = new Bus(++nextId, passengerCapacity, pricePerKilometer, hasFreeTv);
-        this.vehicles.Add(bus);
-        return bus;*/
+        private int lastTaskId = 1;
         public IList<ITeam> Teams
         {
             get
@@ -80,10 +74,11 @@ namespace Team.Core
             var myBoard = BoardNameExists(bordName);
             var myTeam = CheckTeamHasBoard(myBoard);
             CheckMemberInTeam(myTeam, assignee);
-            var taskID = GenerateUniqueTaskId();
+            var taskID = lastTaskId;
             var bug = new Bug(taskID, title, description, priority, severity, assignee, listOfSteps);
             myBoard.AddTask(bug);
             this.tasks.Add(bug);
+            GenerateUniqueTaskId();
             return bug;
         }
 
@@ -91,10 +86,11 @@ namespace Team.Core
         {
             doesTaskTitleExists(title);
             var myBoard = BoardNameExists(bordName);
-            var taskID = GenerateUniqueTaskId();
+            var taskID = lastTaskId;
             var feedback = new Feedback(taskID, title, description, rating);
             myBoard.AddTask(feedback);
             this.tasks.Add(feedback);
+            GenerateUniqueTaskId();
             return feedback;
         }
 
@@ -114,10 +110,11 @@ namespace Team.Core
             doesTaskTitleExists(title);
             var myBoard = BoardNameExists(boardName);
             var myAssignee = AssigneeNameExists(assignee);
-            var taskID = GenerateUniqueTaskId();
+            var taskID = lastTaskId;
             var story = new Story(taskID, title, description, priority, size, assignee);
             myBoard.AddTask(story);
             this.tasks.Add(story);
+            GenerateUniqueTaskId();
             return story;
         }
 

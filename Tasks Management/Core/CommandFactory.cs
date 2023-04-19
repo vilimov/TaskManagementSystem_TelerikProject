@@ -108,13 +108,6 @@ namespace Team.Core
             return result;
         }
 
-        /*private CommandType ParseCommandType(string commandLine)
-        {
-            string commandName = commandLine.Split(SplitCommandSymbol)[0];
-            Enum.TryParse(commandName, true, out CommandType result);
-            return result;
-        }*/
-
         public static List<String> ExtractCommandParameters(string commandLine)
         {
             List<string> commandParameters = new List<string>();
