@@ -12,7 +12,7 @@ namespace Team.Command
 {
     public class CreateBugCommand : BaseCommand
     {
-        public const int ExpectedNumberOfArguments = 7;
+        public const int ExpectedNumberOfArguments = 8;
         public CreateBugCommand(IList<string> commandParameters, IRepository repository) 
             : base(commandParameters, repository)
         {
@@ -31,6 +31,7 @@ namespace Team.Command
             //  [4] - priority of the task
             //  [5] - severity of the task
             //  [6] - assignee of the task
+            //  [7] - Team name where to place task
             //HACK - Please note all Strings that contain spaces must be provided with << and >> example: <<This is the titel of the bug>>
             /*HACK - All parameters that start with << must be at the first positions - example: 
                  Title gets[0]
@@ -45,8 +46,9 @@ namespace Team.Command
             PriorityType priority = this.ParsePriorityTypeParameter(this.CommandParameters[4], "priority");
             SeverityType severity = this.ParseSeverityTypeParameter(this.CommandParameters[5], "severity");
             string assignee = this.CommandParameters[6];
+            string team = this.CommandParameters[7];
             
-            var bug = this.Repository.CreateBug(title, description, board, priority, severity, assignee, listOfSteps);
+            var bug = this.Repository.CreateBug(title, description, board, priority, severity, assignee, listOfSteps, team);
             return $"Bug with ID {bug.Id} was created.";
         }
     }

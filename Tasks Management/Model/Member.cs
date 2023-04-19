@@ -13,33 +13,47 @@ namespace Team.Model
         private const int NameMinLength = 5;
         private const int NameMaxLength = 15;
         private const string errorMsg = "Member's name must be between {0} and {1} symbols";
+        private readonly IList<ITask> tasks;
+        private readonly IList<string> activityHistory;
         public Member(string name)
         {
             Validator.ValidateIntRange(name.Length, NameMinLength, NameMaxLength, String.Format(errorMsg, NameMinLength, NameMaxLength));
             Name = name;
-            Tasks = new List<ITask>();
-            ActivityHistory = new List<string>();
-
+            tasks = new List<ITask>();
+            activityHistory = new List<string>();
+            AddActivity($"Member {Name} created.");
         }
         public string Name { get; }
 
-        public IList<ITask> Tasks { get; }
+        public IList<ITask> Tasks
+        {
+            get
+            {
+                return new List<ITask>(tasks);
+            }
+        }
 
-        public IList<string> ActivityHistory { get; }
+        public IList<string> ActivityHistory
+        {
+            get
+            {
+                return new List<string>(activityHistory);
+            }
+        }
 
         public void AssignTask(ITask task)
         {
-            Tasks.Add(task);
+            tasks.Add(task);
             AddActivity($"{Name} is assigned to task with ID {task.Id}.");
         }
         public void UnassignTask(ITask task)
         {
-            Tasks.Remove(task);
-            AddActivity($"{Name} is unassigned from task with ID {task.Id}.");  
+            tasks.Remove(task);
+            AddActivity($"{Name} is unassigned from task with ID {task.Id}.");
         }
         public void AddActivity(string activity)
         {
-            ActivityHistory.Add(activity);
+            activityHistory.Add(activity);
         }
     }
 }

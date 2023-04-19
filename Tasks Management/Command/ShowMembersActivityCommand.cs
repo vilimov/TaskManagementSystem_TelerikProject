@@ -32,12 +32,12 @@ namespace Team.Command
 
         private string ListAllActivities(string name)
         {
-            var member = Repository.Members.Where(m => m.Name == name);
+            var member = Repository.Members.FirstOrDefault(m => m.Name == name);
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"Member {name} has the following activities:");
-            foreach (var activity in member)
+            foreach (var activity in member.ActivityHistory)
             {
-                sb.AppendLine();
+                sb.AppendLine(activity);
             }
             sb.Append("---------------");
             return sb.ToString();

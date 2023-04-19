@@ -1,7 +1,9 @@
 ﻿using System.Text;
+using Team.Core;
 using Team.Core.Contracts;
 using Team.Exeption;
 using Team.Model;
+using Team.Model.Interface;
 
 namespace Team.Command
 {
@@ -34,6 +36,8 @@ namespace Team.Command
             sb.AppendLine($"Board {name} has the following activities:");            
             foreach (var activity in board)
             {
+                sb.AppendLine(activity.Name);
+                sb.AppendLine("------------");
                 foreach (var item in activity.ActivityHistory)
                 { 
                     sb.AppendLine(item);

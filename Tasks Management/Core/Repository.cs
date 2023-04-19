@@ -56,10 +56,10 @@ namespace Team.Core
         //public IBoard CreateBoard(string name, ITask task)
         public IBoard CreateBoard(string name, ITeam team)
         {
-            if (boards.Any(b => b.Name == name))
+            /*if (boards.Any(b => b.Name == name))
             {
                 throw new ArgumentException($"Board with name '{name}' already exists.");
-            }
+            }*/
             var newBoard = new Board(name);
             teams.FirstOrDefault(t => t.Name == team.Name).AddBoard(newBoard);
             boards.Add(newBoard);
@@ -67,13 +67,13 @@ namespace Team.Core
 
         }
 
-        public IBug CreateBug(string title, string description, string bordName, PriorityType priority, 
-                              SeverityType severity, string assignee, string listOfSteps)
+        public IBug CreateBug(string title, string description, string boardName, PriorityType priority, 
+                              SeverityType severity, string assignee, string listOfSteps, string teamName)
         {
-            doesTaskTitleExists(title);
-            var myBoard = BoardNameExists(bordName);
-            var myTeam = CheckTeamHasBoard(myBoard);
-            CheckMemberInTeam(myTeam, assignee);
+            var team = CheckIfTeamExists(teamName);     //Check if Team Exists, return Iteam
+            var myBoard = CheckTeamHasBoard(boardName, team);           //Check if Bord is in Team and return Board
+            CheckMemberInTeam(team, assignee);          //Check if Member is in Team
+            DoesTaskTitleExistsInBoard(title, myBoard);
             var taskID = lastTaskId;
             var bug = new Bug(taskID, title, description, priority, severity, assignee, listOfSteps);
             myBoard.AddTask(bug);
@@ -82,10 +82,21 @@ namespace Team.Core
             return bug;
         }
 
-        public IFeedback CreateFeedback(string title, string description, int rating, string bordName)
+        private ITeam CheckIfTeamExists(string teamName)
         {
-            doesTaskTitleExists(title);
-            var myBoard = BoardNameExists(bordName);
+            if (!teams.Any(t => t.Name == teamName))
+            {
+                throw new InvalidUserInputException($"Team with name {teamName} doesn't exist");
+            }
+            var team = teams.FirstOrDefault(t => t.Name == teamName);
+            return team;
+        }
+
+        public IFeedback CreateFeedback(string title, string description, int rating, string boardName, string teamName)
+        {
+            var team = CheckIfTeamExists(teamName);     //Check if Team Exists, return Iteam
+            var myBoard = CheckTeamHasBoard(boardName, team);           //Check if Bord is in Team and return Board
+            DoesTaskTitleExistsInBoard(title, myBoard);
             var taskID = lastTaskId;
             var feedback = new Feedback(taskID, title, description, rating);
             myBoard.AddTask(feedback);
@@ -105,11 +116,12 @@ namespace Team.Core
             return newMember;
         }
 
-        public IStory CreateStory(string title, string description, string boardName, PriorityType priority, SizeType size, string assignee)
+        public IStory CreateStory(string title, string description, string boardName, PriorityType priority, SizeType size, string assignee, string teamName)
         {
-            doesTaskTitleExists(title);
-            var myBoard = BoardNameExists(boardName);
-            var myAssignee = AssigneeNameExists(assignee);
+            var team = CheckIfTeamExists(teamName);     //Check if Team Exists, return Iteam
+            var myBoard = CheckTeamHasBoard(boardName, team);           //Check if Bord is in Team and return Board
+            CheckMemberInTeam(team, assignee);          //Check if Member is in Team
+            DoesTaskTitleExistsInBoard(title, myBoard);
             var taskID = lastTaskId;
             var story = new Story(taskID, title, description, priority, size, assignee);
             myBoard.AddTask(story);
@@ -158,9 +170,9 @@ namespace Team.Core
         }
 
         //Check for unique Task Title
-        public bool doesTaskTitleExists(string title)
+        public bool DoesTaskTitleExistsInBoard(string title, IBoard board)
         {
-            foreach (var task in tasks)
+            foreach (var task in board.Tasks)
             {
                 if (task.Title == title)
                 {
@@ -186,16 +198,16 @@ namespace Team.Core
         }
                 
         //Check if the board is added to a team
-        public ITeam CheckTeamHasBoard(IBoard checkBoard)
+        public IBoard CheckTeamHasBoard(string boardName, ITeam teamName)
         {
-            foreach (var team in teams)
+            foreach (var board in teamName.Boards)
             {
-                if (team.Boards.Contains(checkBoard))
+                if (board.Name == boardName)
                 {
-                    return team;
+                    return board;
                 }
             }
-            throw new ArgumentException("This board is not part of any team");
+            throw new ArgumentException($"This board is not part of team {teamName.Name}");
         }
 
         //Check if member is part of a team

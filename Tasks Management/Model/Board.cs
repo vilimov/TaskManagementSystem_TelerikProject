@@ -21,6 +21,7 @@ namespace Team.Model
         {
             Validator.ValidateIntRange(name.Length, minLength, maxLength, errorMsg);
             Name = name;
+            AddActivity($"Board with name {Name} created.");
         }
         public string Name { get; }
 
@@ -49,18 +50,18 @@ namespace Team.Model
 
         public void AddTask(ITask task)
         {
-            if (Tasks.Any(t => t.Id == task.Id))
+            if (tasks.Any(t => t.Id == task.Id))
             {
                 throw new ArgumentException("Task ID must be unique within the board's tasks.");
             }
 
-            Tasks.Add(task);
+            tasks.Add(task);
             AddActivity($"Added task with ID {task.Id} to board {Name}.");
         }
 
         public void RemoveTask(ITask task)
         {
-            Tasks.Remove(task);
+            tasks.Remove(task);
             AddActivity($"Removed task with ID {task.Id} from board {Name}.");
         }
     }
