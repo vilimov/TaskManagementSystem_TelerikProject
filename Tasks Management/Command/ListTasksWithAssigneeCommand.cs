@@ -41,14 +41,42 @@ namespace Team.Command
                 string assignee = this.CommandParameters[1];
                 return FilterByAssignee(assignee);
             }
+            else if (firstCommand == "FilterByStatus")
+            {
+                string staus = this.CommandParameters[1];
+
+                if (staus == "Fixed" || staus == "Active")
+                {
+                    return FilterByStatusBug(staus);
+                }
+                /*if (staus == "Fixed" || staus == "Active")
+                {
+                    return FilterByStatusStatus(staus);
+                }
+                return FilterByAssignee(assignee);*/
+            }
 
             return "lalala";
         }
 
-        private string FilterByStatus(string name) 
+        private string FilterByStatusBug(string staus) 
         {
+            var tempList = Repository.Tasks.Where(t => t.GetType().Name == "Bug").ToList();
+            int counter = 1;
             StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"__List of tasks Filter by Status__");
+            foreach (var task in tempList)
+            {
+                if (task is Bug bug)
+                {
+                    if (bug.Status.ToString() == staus) 
+                    {
+                        sb.AppendLine($"    {counter++}. Bug with status {bug.Status.ToString()} and title '{bug.Title}'");
+                    }
+                }
 
+            }
+            
             return sb.ToString();
         }
         private string FilterByAssignee(string name)
