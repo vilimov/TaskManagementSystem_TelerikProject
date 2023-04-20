@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using Team.Core.Contracts;
 using Team.Exeption;
 using Team.Model.Enum;
@@ -50,7 +46,6 @@ namespace Team.Command
                     System.Enum.TryParse(firstProperty, out StoryStatusType statusType);
                     stories = stories.Where(s => s.Status == statusType).Where(t => t.Assignee == secondProperty).ToList();
                 }
-
 
                 switch (action)
                 {

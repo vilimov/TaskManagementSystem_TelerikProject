@@ -14,15 +14,20 @@ CreateBoard Board1 Team1
 CreateBoard Board2 Team2
 CreateBoard Board2 Team1
 CreateBoard Board3 Team1
-CreateBug  <<Bug Name 1>> <<Bug Description 1>> Board1 High Critical Member1 <<Steps To Reproduce>> Team1
+CreateBug  <<Bug Name 1>> <<Bug Description 1>> Board1 Medium Major Member1 <<Steps To Reproduce>> Team1
 CreateBug <<The prg freezes when the Log In button is clicked.>> <<This needs to be fixed quickly!>> Board1 High Critical Member1 <<1. Open the application; 2.Click "Log In"; 3. The application freezes!>> Team1
+CreateBug  <<Bug_Name_1>> <<Bug_Description_2>> Board2 Low Minor Member2 <<Step1_Step2_Step3>> Team2
+CreateBug  <<Bug_Name_2>> <<Bug_Description_2>> Board2 Low Minor Member2 <<Step1_Step2_Step3>> Team2
 CreateFeedback FeedbackTitle FeedbackDescription 1 Board1 Team1
 CreateStory newStory_1 Description1 Board1 Low Small Member1 Team1 
-CreateStory newStory_2 Description2 Board2 Medium Small Member2 Team2
+CreateStory newStory_2 Description2 Board2 Medium Small Member2 Team1
 CreateStory newStory_1 Description1 Board1 Low Small Member1 Team1
 ChangeStorySize 4 Medium
-ChangeStoryPriority 4 High
-ChangeStoryStatus 4 Done
+ChangeStorySize 6 Medium
+ChangeStoryPriority 5 High
+ChangeStoryPriority 6 High
+ChangeStoryStatus 3 InProgress
+ChangeStoryStatus 7 Done
 ShowBoardsActivity Board1
 ShowMembersActivity Member1
 ShowMembers
@@ -30,4 +35,25 @@ ShowTeamBoards Team1
 ShowTeamMembers Team1
 ShowTeamsActivity Team1
 ShowTeams
+ChangeBugStatus 1 Fixed
+ChangeBugStatus 2 Fixed
 ListBugs
+ListBugs SortBy Title
+ListBugs SortBy Priority
+ListBugs SortBy Severity
+ListBugs FilterBy Status
+ListBugs FilterBy Active
+ListBugs FilterBy Fixed
+ListBugs FilterBy Member1
+ListBugs FilterBy Active Member1
+ListBugs FilterBy Active Member2
+ListBugs FilterBy Fixed Member1
+ListBugs FilterBy Fixed Member2
+ListStories SortBy Title
+ListStories SortBy Priority
+ListStories SortBy Size
+ListStories FilterBy Status
+ListStories FilterBy NotDone
+ListStories FilterBy InProgress
+ListStories FilterBy Done
+ListStories FilterBy NotDone Member1
