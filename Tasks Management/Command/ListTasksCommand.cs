@@ -30,7 +30,7 @@ namespace Team.Command
                 sb.AppendLine("     -COMMENTS-     ");
                 foreach (var comment in feedback.Comments)
                 {
-                    sb.AppendLine($"From: {comment.Author}: {comment.CommentText}");
+                    sb.AppendLine($"From: {comment.Author.Name}: {comment.CommentText}");
                 }
                 sb.AppendLine("========================================");
             }
@@ -42,7 +42,7 @@ namespace Team.Command
                 sb.AppendLine("     -COMMENTS-     ");
                 foreach (var comment in story.Comments)
                 {
-                    sb.AppendLine($"From {story.Assignee}: {comment.CommentText}");
+                    sb.AppendLine($"From {comment.Author.Name}: {comment.CommentText}");
                 }
                 sb.AppendLine("========================================");
             }
