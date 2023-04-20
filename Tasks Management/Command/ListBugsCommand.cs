@@ -1,8 +1,11 @@
-﻿using System.Text;
+﻿using System.Drawing;
+using System.Text;
 using Team.Core.Contracts;
 using Team.Exeption;
 using Team.Model.Enum;
 using Team.Model.Interface;
+using System;
+using Microsoft.VisualBasic;
 
 namespace Team.Command
 {
@@ -12,7 +15,6 @@ namespace Team.Command
         {
         }
         IList<IBug> bugs = new List<IBug>();
-        IList<IBug> filteredBugs = new List<IBug>();
         public override string Execute()
         {
             if (CommandParameters.Count == 1 && CommandParameters[0] != "ListBugs")
@@ -32,21 +34,31 @@ namespace Team.Command
             {
                 string action = CommandParameters[0];
                 string firstProperty = CommandParameters[1];
-                if (Repository.Members.Any(m => m.Name == firstProperty))
-                {
-                    string memberName = firstProperty;
-                }
-
                 if (CommandParameters.Count == 3)
                 {
-                    string validStatus = firstProperty;
-                    string memberName = CommandParameters[2];
-                    Repository.Members.Any(m => m.Name == firstProperty);
+                    if (!System.Enum.IsDefined(typeof(StatusType), firstProperty))
+                    {
+                        throw new InvalidUserInputException($"You have entered invalid input '{firstProperty}' for second parameter. When you enter three parameters, the second one should be Valid Bug Status (Active/Fixed)!");
+                    }
+                    string secondProperty = CommandParameters[2];
+                    if (!Repository.Members.Any(m => m.Name == secondProperty))
+                    {
+                        throw new InvalidUserInputException($"You have entered invalid input '{secondProperty}'. Please enter or Valid Assignee for third parameter!");
+                    }
+                    System.Enum.TryParse(firstProperty, out StatusType statusType);
+                    bugs = bugs.Where(t => t.Status == statusType).Where(t => t.Assignee == secondProperty).ToList();
                 }
 
+
                 switch (action)
-                    {
-                        case "FilterBy":
+                {
+                    case "FilterBy":
+                        if (Repository.Members.Any(m => m.Name == firstProperty))
+                        {
+                            bugs = bugs.Where(t => t.Assignee == firstProperty).ToList();
+                        }
+                        else
+                        {
                             switch (firstProperty)
                             {
                                 case "Active":
@@ -55,35 +67,38 @@ namespace Team.Command
                                 case "Fixed":
                                     bugs = bugs.Where(t => t.Status == StatusType.Fixed).ToList();
                                     break;
-                                case string memberName:
-                                    bugs = bugs.Where(t => t.Assignee == memberName).ToList();
-                                    break;
                                 default:
-                                    throw new InvalidUserInputException("You have entered 'FilterBy' for first parameter, please input Valid Bug Status (Active/Fixed) or Valid Assignee for second parameter");
+                                    throw new InvalidUserInputException("You have entered 'FilterBy' for first parameter. Please input Valid Bug Status (Active/Fixed) or Valid Assignee for second parameter!");
                             }
-                            break;
+                        }
+                        break;
 
-                        case "SortBy":
-                            switch (firstProperty)
-                            {
-                                case "Title":
-                                    bugs = bugs.OrderBy(b => b.Title).ToList();
-                                    break;
-                                case "Priority":
-                                    bugs = bugs.OrderBy(b => b.Priority).ToList();
-                                    break;
-                                case "Severity":
-                                    bugs = bugs.OrderBy(b => b.Severity).ToList();
-                                    break;
-                                default:
-                                    throw new InvalidUserInputException("You have entered 'SortBy' for first parameter, please input 'Title'/'Priority'/'Severity' for second parameter");
-                            }
-                            break;
-                        default:
-                            throw new InvalidUserInputException("Please provide valid input - 'FilterBy' or 'SortBy' for first parameter of the 'ListBugs' command");
-                    }
+                    case "SortBy":
+                        switch (firstProperty)
+                        {
+                            case "Title":
+                                bugs = bugs.OrderBy(b => b.Title).ToList();
+                                break;
+                            case "Priority":
+                                bugs = bugs.OrderBy(b => b.Priority).ToList();
+                                break;
+                            case "Severity":
+                                bugs = bugs.OrderBy(b => b.Severity).ToList();
+                                break;
+                            default:
+                                throw new InvalidUserInputException("You have entered 'SortBy' for first parameter. Please input 'Title'/'Priority'/'Severity' for second parameter!");
+                        }
+                        break;
+                    default:
+                        throw new InvalidUserInputException("Please provide valid input - 'FilterBy' or 'SortBy' for first parameter of the 'ListBugs' command!");
+                }
             }
-            return Print(bugs);
+            string result = "**No Results with the provided parameters!**";
+            if (bugs.Count != 0)
+            {
+                result = Print(bugs);
+            }
+            return result;
         }
 
         private string Print(IList<IBug> bugs)
