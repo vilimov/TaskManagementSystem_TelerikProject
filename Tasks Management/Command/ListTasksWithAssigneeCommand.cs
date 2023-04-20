@@ -33,30 +33,31 @@ namespace Team.Command
             }
             else if (firstCommand == "SortByTitle")
             {
-                //string title = this.CommandParameters[1];
                 return SortTasksByTitle();
             }
             else if (firstCommand == "FilterByAssignee")
             {
+                ValidateInputParametersCount(CommandParameters, 2);
+
                 string assignee = this.CommandParameters[1];
                 return FilterByAssignee(assignee);
             }
             else if (firstCommand == "FilterByStatus")
             {
+                ValidateInputParametersCount(CommandParameters, 2);
                 string staus = this.CommandParameters[1];
-
+                
                 if (staus == "Fixed" || staus == "Active")
                 {
                     return FilterByStatusBug(staus);
                 }
-                /*if (staus == "Fixed" || staus == "Active")
-                {
-                    return FilterByStatusStatus(staus);
-                }
-                return FilterByAssignee(assignee);*/
-            }
 
-            return "lalala";
+               if (staus == "NotDone" || staus == "InProgress" || staus == "Done")
+                {
+                    return FilterByStatusStory(staus);
+                }
+            }
+            throw new InvalidUserInputException($"Invalid Command peoperty for ListTasksWithAssignee");
         }
 
         private string FilterByStatusBug(string staus) 
@@ -74,9 +75,26 @@ namespace Team.Command
                         sb.AppendLine($"    {counter++}. Bug with status {bug.Status.ToString()} and title '{bug.Title}'");
                     }
                 }
+            }
+            return sb.ToString();
+        }
+        private string FilterByStatusStory(string staus)
+        {
+            var tempList = Repository.Tasks.Where(t => t.GetType().Name == "Story").ToList();
+            int counter = 1;
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"__List of tasks Filter by Status__");
+            foreach (var task in tempList)
+            {
+                if (task is Story story)
+                {
+                    if (story.Status.ToString() == staus)
+                    {
+                        sb.AppendLine($"    {counter++}. Story with status {story.Status.ToString()} and title '{story.Title}'");
+                    }
+                }
 
             }
-            
             return sb.ToString();
         }
         private string FilterByAssignee(string name)
@@ -96,7 +114,7 @@ namespace Team.Command
                 }
                 if (asigned.Tasks.Count == 0)
                 {
-                    sb.AppendLine($"    **No Tasks with Assignee**");
+                    sb.AppendLine($"    **No Tasks with Assignee {asigned.Name}**");
                 }
             }
             return sb.ToString();
