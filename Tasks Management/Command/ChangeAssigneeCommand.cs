@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 using Team.Core.Contracts;
@@ -43,11 +44,15 @@ namespace Team.Command
             {
                 bug.ChangeAssignee(memberName);
                 member.AssignTask(bug);
+                var oldMember = Repository.Members.FirstOrDefault(m => m.Name != member.Name && m.Tasks.Contains(bug));
+                oldMember.UnassignTask(bug);
             }
             if (task is Story story)
             {
                 story.ChangeAssignee(memberName);
                 member.AssignTask(story);
+                var oldMember = Repository.Members.FirstOrDefault(m => m.Name != member.Name && m.Tasks.Contains(story));
+                oldMember.UnassignTask(story);
             }
             return $"Task re-assigned to {memberName}";
         }

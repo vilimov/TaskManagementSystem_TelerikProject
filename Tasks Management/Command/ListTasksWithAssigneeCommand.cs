@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using System.Xml.Linq;
 using Team.Core.Contracts;
 using Team.Exeption;
 using Team.Model;
+using Team.Model.Interface;
 
 namespace Team.Command
 {
@@ -29,12 +31,16 @@ namespace Team.Command
             if (firstCommand == "ListTasksWithAssignee") {
                 return ListAllTasksAndAssignee();
             }
-            else if(firstCommand == "SortByTitle")
+            else if (firstCommand == "SortByTitle")
             {
-                string title = this.CommandParameters[1];
-                return SortTasksByTitle(title);
+                //string title = this.CommandParameters[1];
+                return SortTasksByTitle();
             }
-            
+            else if (firstCommand == "FilterByAssignee")
+            {
+                string assignee = this.CommandParameters[1];
+                return FilterByAssignee(assignee);
+            }
 
             return "lalala";
         }
@@ -45,39 +51,67 @@ namespace Team.Command
 
             return sb.ToString();
         }
-
-        private string SortTasksByTitle(string name)
+        private string FilterByAssignee(string name)
         {
+            var tempList = Repository.Tasks.Where(t => t.GetType().Name != "Feedback").ToList();
+            var asssigneed = Repository.Members.Where(n => n.Name == name).ToList();
             StringBuilder sb = new StringBuilder();
-
+            if (asssigneed.Count == 0) { throw new InvalidUserInputException($"Name '{name}' doesnt exist in the app"); }
+            
+            sb.AppendLine($"__List of tasks Filter by Assignee__");
+            int counter = 1;
+            foreach (var asigned in asssigneed)
+            {
+                foreach (var item in asigned.Tasks)
+                {
+                    sb.AppendLine($"    {counter++}. {asigned.Name} has {item.GetType().Name} with title '{item.Title}'");
+                }
+                if (asigned.Tasks.Count == 0)
+                {
+                    sb.AppendLine($"    **No Tasks with Assignee**");
+                }
+            }
             return sb.ToString();
         }
-        private string SortTasksByAssignee(string name)
-        {
-            StringBuilder sb = new StringBuilder();
 
+        private string SortTasksByTitle()
+        { 
+            var tempList = Repository.Tasks.Where(t => t.GetType().Name != "Feedback").OrderBy(t => t.Title).ToList();
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"__List of all assigned tasks Sort by title__");
+            int counter = 1;
+            foreach (var item in tempList)
+            {
+                if (tempList.Count != 0)
+                {
+                    var member = Repository.Members.FirstOrDefault(m => m.Tasks.Contains(item));
+                    sb.AppendLine($"    {counter++}. '{item.Title}' is {item.GetType().Name} assigned to {member.Name}");
+                }
+                else {
+                    sb.AppendLine($"    **No Tasks with Assignee**");
+                }
+            }
             return sb.ToString();
         }
 
         private string ListAllTasksAndAssignee()
         {
+            var tempList = Repository.Tasks.Where(t => t.GetType().Name != "Feedback").ToList();
+
             StringBuilder sb = new StringBuilder();
-            var tempList = Repository.Members;
-            sb.AppendLine($"__List of all members__");
+            sb.AppendLine($"__List of all assigned tasks__");
+            int counter = 1;
             foreach (var item in tempList)
             {
-                int counter = 1;
-                sb.AppendLine($"    - {item.Name}'s tasks:");
-                if (item.Tasks.Count == 0)
+                if (tempList.Count != 0)
                 {
-                    sb.AppendLine($"      **NO Tasks for this member**");
+                    var member = Repository.Members.FirstOrDefault(m => m.Tasks.Contains(item));
+                    sb.AppendLine($"    {counter++}. '{item.Title}' is {item.GetType().Name} assigned to {member.Name}");
                 }
-                foreach (var task in item.Tasks)
+                else
                 {
-                    sb.AppendLine($"      {counter++}. {task.GetType().Name} - {task.Title}");
+                    sb.AppendLine($"    **No Tasks with Assignee**");
                 }
-                
-                sb.AppendLine($"------------------");
             }
             return sb.ToString();
         }
