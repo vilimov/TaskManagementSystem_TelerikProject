@@ -14,6 +14,7 @@ namespace Team.Model.Interface
         public SeverityType Severity { get; }
         public StatusType Status { get; }
         public string Assignee { get; }
+        public string ListOfSteps { get; }
         public void ChangePriority(PriorityType newPriority);
         public void ChangeSeverity(SeverityType newSeverity);
         public void ChangeStatus(StatusType newStatus);

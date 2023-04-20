@@ -29,6 +29,8 @@ namespace Team.Model
             Status = StatusType.Active;
             Priority = priority;
             Severity = severity;
+            Assignee = assignee;
+            ListOfSteps = listOfSteps;
         }
         public PriorityType Priority 
         {
@@ -74,6 +76,9 @@ namespace Team.Model
                 assignee = value;
             }
         }
+
+        public string ListOfSteps { get; }
+
         public void ChangePriority(PriorityType newPriority)
         {
             Priority = newPriority;
@@ -82,12 +87,12 @@ namespace Team.Model
         public void ChangeSeverity(SeverityType newSeverity)
         {
             Severity = newSeverity;
-            AddHistory($"Severity changed to{newSeverity}");
+            AddHistory($"Severity changed to {newSeverity}");
         }
         public void ChangeStatus(StatusType newStatus)
         {
             Status = newStatus;
-            AddHistory($"Severity changed to{newStatus}");
+            AddHistory($"Status changed to {newStatus}");
         }
         public void ChangeAssignee(string newAssignee)
         {
