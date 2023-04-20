@@ -74,10 +74,12 @@ namespace Team.Core
             var myBoard = CheckTeamHasBoard(boardName, team);           //Check if Bord is in Team and return Board
             CheckMemberInTeam(team, assignee);          //Check if Member is in Team
             DoesTaskTitleExistsInBoard(title, myBoard);
+            var member = ReturnTheMember(assignee);
             var taskID = lastTaskId;
             var bug = new Bug(taskID, title, description, priority, severity, assignee, listOfSteps);
             myBoard.AddTask(bug);
             this.tasks.Add(bug);
+            member.AssignTask(bug);
             GenerateUniqueTaskId();
             return bug;
         }
@@ -122,15 +124,17 @@ namespace Team.Core
             var myBoard = CheckTeamHasBoard(boardName, team);           //Check if Bord is in Team and return Board
             CheckMemberInTeam(team, assignee);          //Check if Member is in Team
             DoesTaskTitleExistsInBoard(title, myBoard);
+            var member = ReturnTheMember(assignee);
             var taskID = lastTaskId;
             var story = new Story(taskID, title, description, priority, size, assignee);
             myBoard.AddTask(story);
             this.tasks.Add(story);
+            member.AssignTask(story);
             GenerateUniqueTaskId();
             return story;
         }
 
-        private object AssigneeNameExists(string assignee)
+        private IMember ReturnTheMember(string assignee)
         {
             foreach (var member in members)
             {

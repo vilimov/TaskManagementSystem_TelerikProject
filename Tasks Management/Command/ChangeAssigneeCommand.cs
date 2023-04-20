@@ -42,10 +42,12 @@ namespace Team.Command
             if(task is Bug bug)
             {
                 bug.ChangeAssignee(memberName);
+                member.AssignTask(bug);
             }
             if (task is Story story)
             {
                 story.ChangeAssignee(memberName);
+                member.AssignTask(story);
             }
             return $"Task re-assigned to {memberName}";
         }
