@@ -166,6 +166,10 @@ namespace Team.Core
 
             return task;
         }
+        public IEnumerable<ITask> GetAllTasks()
+        {
+            return tasks;
+        }
         //ID ++
         private int GenerateUniqueTaskId()
         {

@@ -24,5 +24,6 @@ namespace Team.Core.Contracts
         public IStory CreateStory(string title, string description, string board, PriorityType priority, SizeType size, string assignee, string teamName);
         public IFeedback CreateFeedback(string title, string description, int rating, string board, string teamName);
         ITask FindTask(int taskId);
+        public IEnumerable<ITask> GetAllTasks();
     }
 }
