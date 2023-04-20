@@ -1,6 +1,7 @@
 ﻿using Team.Core.Contracts;
 using Team.Model.Interface;
 using Team.Model;
+using Team.Exeption;
 
 namespace Team.Command
 {
@@ -13,16 +14,23 @@ namespace Team.Command
         public override string Execute()
         {
             ValidateInputParametersCount(CommandParameters, ExpectedNumberOfArguments);
-            ParseIntParameter(CommandParameters[0], "ID");
+            int currentId = ParseIntParameter(CommandParameters[0], "ID");
 
             // Parameters:
             // [0] - ID
             // [1] - New Priority
-            IStory obj = (Story)Repository.Tasks.FirstOrDefault(s => s.Id == int.Parse(CommandParameters[0]));
-            var currentPriority = obj.Priority;
-            var newPriority = CommandParameters[1];
-            Core.Repository.ChangeEnumValue(obj, "Priority", newPriority);
-            string message = $"Story priority changed from {currentPriority} to {newPriority}";
+            var currentTask = Repository.Tasks.FirstOrDefault(t => t.Id == currentId);
+            string message = string.Empty;
+            if (currentTask is IStory story)
+            {
+                var currentPriority = story.Priority;
+                var newPriority = CommandParameters[1]; Core.Repository.ChangeEnumValue(story, "Priority", newPriority);
+                message = $"Story priority changed from {currentPriority} to {newPriority}";
+            }
+            else
+            {
+                throw new InvalidUserInputException($"The task with the provided ID '{currentId}' is not of type 'Story'");
+            }
             return message;
         }
     }

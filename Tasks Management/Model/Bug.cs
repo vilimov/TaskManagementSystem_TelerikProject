@@ -27,6 +27,8 @@ namespace Team.Model
             : base(id, title, description)
         {
             Status = StatusType.Active;
+            Priority = priority;
+            Severity = severity;
         }
         public PriorityType Priority 
         {

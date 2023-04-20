@@ -43,12 +43,16 @@ namespace Team.Core
 
                     ICommand command = commandFactory.Create(inputLine);
                     string result = command.Execute();
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine(result.Trim());
+                    Console.ResetColor();
                     Console.WriteLine(ReportSeparator);
                 }
                 catch (InvalidUserInputException ex)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(ex.Message);
+                    Console.ResetColor();
                     Console.WriteLine(ReportSeparator);
                 }
                 catch (Exception ex)

@@ -2,6 +2,7 @@
 using Team.Core.Contracts;
 using Team.Model.Interface;
 using Team.Model;
+using Team.Exeption;
 
 namespace Team.Command
 {
@@ -14,16 +15,25 @@ namespace Team.Command
         public override string Execute()
         {
             ValidateInputParametersCount(CommandParameters, ExpectedNumberOfArguments);
-            ParseIntParameter(CommandParameters[0], "ID");
+            int currentId = ParseIntParameter(CommandParameters[0], "ID");
 
             // Parameters:
             // [0] - ID
             // [1] - New Status
-            IStory obj = (Story)Repository.Tasks.FirstOrDefault(s => s.Id == int.Parse(CommandParameters[0]));
-            var currentStatus = obj.Status;
-            var newStatus = CommandParameters[1];
-            Core.Repository.ChangeEnumValue(obj, "Status", newStatus);
-            string message = $"Story status changed from {currentStatus} to {newStatus}";
+            var currentTask = Repository.Tasks.FirstOrDefault(t => t.Id == currentId);
+            string message = string.Empty;
+            //ToDo I know this should be implemented as Method as it is used more than once, but...
+            if (currentTask is IStory story)
+            {
+                var currentStatus = story.Status;
+                var newStatus = CommandParameters[1];
+                Core.Repository.ChangeEnumValue(story, "Status", newStatus);
+                message = $"Story status changed from {currentStatus} to {newStatus}";
+            }
+            else
+            {
+                throw new InvalidUserInputException($"The task with the provided ID '{currentId}' is not of type 'Story'");
+            }            
             return message;
         }
     }

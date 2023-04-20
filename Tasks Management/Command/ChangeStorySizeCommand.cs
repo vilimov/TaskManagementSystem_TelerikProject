@@ -1,4 +1,5 @@
 ﻿using Team.Core.Contracts;
+using Team.Exeption;
 using Team.Model;
 using Team.Model.Interface;
 
@@ -13,16 +14,24 @@ namespace Team.Command
         public override string Execute()
         {
             ValidateInputParametersCount(CommandParameters, ExpectedNumberOfArguments);
-            ParseIntParameter(CommandParameters[0], "ID");
+            int currentId = ParseIntParameter(CommandParameters[0], "ID");
 
             // Parameters:
             // [0] - ID
             // [1] - New Size
-            IStory obj = (Story)Repository.Tasks.FirstOrDefault(s => s.Id == int.Parse(CommandParameters[0]));
-            var currentSize = obj.Size;
-            var newSize = CommandParameters[1];
-            Core.Repository.ChangeEnumValue(obj, "Size", newSize);
-            string message = $"Story size changed from {currentSize} to {newSize}";
+            var currentTask = Repository.Tasks.FirstOrDefault(t => t.Id == currentId);
+            string message = string.Empty;
+            if (currentTask is IStory story)
+            {
+                var currentSize = story.Size;
+                var newSize = CommandParameters[1];
+                Core.Repository.ChangeEnumValue(story, "Size", newSize);
+                message = $"Story size changed from {currentSize} to {newSize}";
+            }
+            else
+            {
+                throw new InvalidUserInputException($"The task with the provided ID '{currentId}' is not of type 'Story'");
+            }
             return message;
         }
     }
