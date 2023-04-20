@@ -50,7 +50,7 @@ namespace Team.Command
             sb.AppendLine("\nBugs:");
             foreach (var bug in tasks.OfType<Bug>())
             {
-                sb.AppendLine($"Bug with ID[{bug.Id}] - {bug.Title}\n - Description: {bug.Description}\n - Priority: {bug.Priority}\n - Severity: {bug.Severity}\n - Status: {bug.Status}");
+                sb.AppendLine($"Bug with ID[{bug.Id}] - {bug.Title}\n - Description: {bug.Description}\n - Priority: {bug.Priority}\n - Severity: {bug.Severity}\n - Status: {bug.Status}\n - Steps: {bug.ListOfSteps}");
                 sb.AppendLine("     -COMMENTS-     ");
                 foreach (var comment in bug.Comments)
                 {
