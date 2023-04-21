@@ -5,6 +5,8 @@ using System.Linq;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using Team.Model;
 using Team.Model.Enum;
 
 namespace Team.Tests.Helpers
@@ -53,6 +55,20 @@ namespace Team.Tests.Helpers
                         BugData.ValidSeverity,
                         BugData.ValidAssignee,
                         BugData.ValidStepsList);
+        }
+    }
+    public static class MemberTestInitialization
+    {
+        public static Member InitializeTestMember()
+        {
+            return new Member(MemberData.ValidName);
+        }
+    }
+    public static class BoardTestInitialization
+    {
+        public static Board InitializeTestBoard()
+        {
+            return new Board("BoardName");
         }
     }
 }
