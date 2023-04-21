@@ -6,6 +6,8 @@ using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Team.Core.Contracts;
+using Team.Core;
 using Team.Model;
 using Team.Model.Enum;
 
@@ -42,6 +44,10 @@ namespace Team.Tests.Helpers
     {
         public const string ValidName = "Valid_Name";
     }
+    public static class BoardData
+    {
+        public const string ValidName = "Valid_Name";
+    }
 
     public static class TaskTestInitialization
     {
@@ -69,6 +75,13 @@ namespace Team.Tests.Helpers
         public static Board InitializeTestBoard()
         {
             return new Board("BoardName");
+        }
+    }
+    public static class RepossitoryTestInitialization
+    {
+        public static IRepository GetTestRepository()
+        {
+            return new Repository();
         }
     }
 }
