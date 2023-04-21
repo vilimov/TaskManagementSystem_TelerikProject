@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Team.Exeption;
+using Team.Model;
 using Team.Model.Enum;
-using Team.Model.Interface;
 using Team.Tests.Helpers;
 
 namespace Team.Tests.ModelsTests
@@ -25,11 +21,11 @@ namespace Team.Tests.ModelsTests
             string steps = BugData.ValidStepsList;
 
             //Act
-            var sut = new Model.Bug(id, title, description, priority, severity, assignee, steps);
+            var sut = new Bug(id, title, description, priority, severity, assignee, steps);
 
             //Assert
             Assert.AreEqual(id, sut.Id);
-        }
+        }        
 
         [TestMethod]
         public void CreateNewBug_When_TitleIsValid()
@@ -44,7 +40,7 @@ namespace Team.Tests.ModelsTests
             string steps = BugData.ValidStepsList;
 
             //Act
-            var sut = new Model.Bug(id, title, description, priority, severity, assignee, steps);
+            var sut = new Bug(id, title, description, priority, severity, assignee, steps);
 
             //Assert
             Assert.AreEqual(title, sut.Title);
@@ -63,7 +59,7 @@ namespace Team.Tests.ModelsTests
             string steps = BugData.ValidStepsList;
 
             //Act
-            var sut = new Model.Bug(id, title, description, priority, severity, assignee, steps);
+            var sut = new Bug(id, title, description, priority, severity, assignee, steps);
 
             //Assert
             Assert.AreEqual(description, sut.Description);
@@ -82,7 +78,7 @@ namespace Team.Tests.ModelsTests
             string steps = BugData.ValidStepsList;
 
             //Act
-            var sut = new Model.Bug(id, title, description, priority, severity, assignee, steps);
+            var sut = new Bug(id, title, description, priority, severity, assignee, steps);
 
             //Assert
             Assert.AreEqual(priority, sut.Priority);
@@ -101,7 +97,7 @@ namespace Team.Tests.ModelsTests
             string steps = BugData.ValidStepsList;
 
             //Act
-            var sut = new Model.Bug(id, title, description, priority, severity, assignee, steps);
+            var sut = new Bug(id, title, description, priority, severity, assignee, steps);
             sut.ChangePriority(PriorityType.High);
 
             //Assert
@@ -121,7 +117,7 @@ namespace Team.Tests.ModelsTests
             string steps = BugData.ValidStepsList;
 
             //Act
-            var sut = new Model.Bug(id, title, description, priority, severity, assignee, steps);
+            var sut = new Bug(id, title, description, priority, severity, assignee, steps);
 
             //Assert
             Assert.AreEqual(severity, sut.Severity);
@@ -140,7 +136,7 @@ namespace Team.Tests.ModelsTests
             string steps = BugData.ValidStepsList;
 
             //Act
-            var sut = new Model.Bug(id, title, description, priority, severity, assignee, steps);
+            var sut = new Bug(id, title, description, priority, severity, assignee, steps);
             sut.ChangeSeverity(SeverityType.Critical);
 
             //Assert
@@ -160,7 +156,7 @@ namespace Team.Tests.ModelsTests
             string steps = BugData.ValidStepsList;
 
             //Act
-            var sut = new Model.Bug(id, title, description, priority, severity, assignee, steps);
+            var sut = new Bug(id, title, description, priority, severity, assignee, steps);
             sut.ChangeStatus(StatusType.Fixed);
 
             //Assert
@@ -180,7 +176,7 @@ namespace Team.Tests.ModelsTests
             string steps = BugData.ValidStepsList;
 
             //Act
-            var sut = new Model.Bug(id, title, description, priority, severity, assignee, steps);
+            var sut = new Bug(id, title, description, priority, severity, assignee, steps);
 
             //Assert
             Assert.AreEqual(assignee, sut.Assignee);
@@ -199,7 +195,7 @@ namespace Team.Tests.ModelsTests
             string steps = BugData.ValidStepsList;
 
             //Act
-            var sut = new Model.Bug(id, title, description, priority, severity, assignee, steps);
+            var sut = new Bug(id, title, description, priority, severity, assignee, steps);
             sut.ChangeAssignee("newAssignee");
 
             //Assert
@@ -219,7 +215,7 @@ namespace Team.Tests.ModelsTests
             string steps = BugData.ValidStepsList;
 
             //Act
-            var sut = new Model.Bug(id, title, description, priority, severity, assignee, steps);
+            var sut = new Bug(id, title, description, priority, severity, assignee, steps);
 
             //Assert
             Assert.AreEqual(steps, sut.ListOfSteps);
@@ -238,7 +234,7 @@ namespace Team.Tests.ModelsTests
             string steps = BugData.ValidStepsList;
 
             //Act
-            var sut = new Model.Bug(id, title, description, priority, severity, assignee, steps);
+            var sut = new Bug(id, title, description, priority, severity, assignee, steps);
             string bugSteps = sut.ListOfSteps.ToString();
 
             //Assert
@@ -258,7 +254,7 @@ namespace Team.Tests.ModelsTests
             string steps = BugData.ValidStepsList;
 
             //Act
-            var sut = new Model.Bug(id, title, description, priority, severity, assignee, steps);
+            var sut = new Bug(id, title, description, priority, severity, assignee, steps);
 
             //Assert
             Assert.AreEqual(priority, sut.Priority);
@@ -277,7 +273,7 @@ namespace Team.Tests.ModelsTests
             string steps = BugData.ValidStepsList;
 
             //Act
-            var sut = new Model.Bug(id, title, description, priority, severity, assignee, steps);
+            var sut = new Bug(id, title, description, priority, severity, assignee, steps);
 
             //Assert
             Assert.IsInstanceOfType(sut, typeof(Model.Bug));

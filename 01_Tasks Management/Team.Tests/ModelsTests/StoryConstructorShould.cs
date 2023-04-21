@@ -1,3 +1,6 @@
+using Newtonsoft.Json.Linq;
+using System.Threading.Channels;
+using Team.Model;
 using Team.Model.Enum;
 using Team.Tests.Helpers;
 
@@ -18,14 +21,14 @@ namespace Team.Tests.ModelsTests
             string assignee = BugData.ValidAssignee;
 
             //Act
-            var sut = new Model.Story(id, title, description, priority, size, assignee);
+            var sut = new Story(id, title, description, priority, size, assignee);
 
             //Assert
             Assert.AreEqual(id, sut.Id);
         }
 
         [TestMethod]
-        public void CreateNewBug_When_TitleIsValid()
+        public void CreateNewStory_When_TitleIsValid()
         {
             //Arrange
             int id = 1;
@@ -36,14 +39,14 @@ namespace Team.Tests.ModelsTests
             string assignee = BugData.ValidAssignee;
 
             //Act
-            var sut = new Model.Story(id, title, description, priority, size, assignee);
+            var sut = new Story(id, title, description, priority, size, assignee);
 
             //Assert
             Assert.AreEqual(title, sut.Title);
         }
 
         [TestMethod]
-        public void CreateNewBug_When_DescriptionIsValid()
+        public void CreateNewStory_When_DescriptionIsValid()
         {
             //Arrange
             int id = 1;
@@ -54,14 +57,14 @@ namespace Team.Tests.ModelsTests
             string assignee = BugData.ValidAssignee;
 
             //Act
-            var sut = new Model.Story(id, title, description, priority, size, assignee);
+            var sut = new Story(id, title, description, priority, size, assignee);
 
             //Assert
             Assert.AreEqual(description, sut.Description);
         }
 
         [TestMethod]
-        public void CreateNewBug_When_PriorityIsValid()
+        public void CreateNewStory_When_PriorityIsValid()
         {
             //Arrange
             int id = 1;
@@ -72,14 +75,14 @@ namespace Team.Tests.ModelsTests
             string assignee = BugData.ValidAssignee;
 
             //Act
-            var sut = new Model.Story(id, title, description, priority, size, assignee);
+            var sut = new Story(id, title, description, priority, size, assignee);
 
             //Assert
             Assert.AreEqual(priority, sut.Priority);
         }
 
         [TestMethod]
-        public void CreateNewBug_When_SizeIsValid()
+        public void CreateNewStory_When_SizeIsValid()
         {
             //Arrange
             int id = 1;
@@ -90,14 +93,14 @@ namespace Team.Tests.ModelsTests
             string assignee = BugData.ValidAssignee;
 
             //Act
-            var sut = new Model.Story(id, title, description, priority, size, assignee);
+            var sut = new Story(id, title, description, priority, size, assignee);
 
             //Assert
             Assert.AreEqual(size, sut.Size);
         }
 
         [TestMethod]
-        public void CreateNewBug_When_AssigneeIsValid()
+        public void ReturnCorrectStatus_When_StatusIsChanged()
         {
             //Arrange
             int id = 1;
@@ -108,7 +111,25 @@ namespace Team.Tests.ModelsTests
             string assignee = BugData.ValidAssignee;
 
             //Act
-            var sut = new Model.Story(id, title, description, priority, size, assignee);
+            var sut = new Story(id, title, description, priority, size, assignee);
+
+            //Assert
+            Assert.AreEqual(StoryStatusType.NotDone, sut.Status);
+        }
+
+        [TestMethod]
+        public void CreateNewStory_When_AssigneeIsValid()
+        {
+            //Arrange
+            int id = 1;
+            string title = TaskData.ValidTitle;
+            string description = TaskData.ValidDescription;
+            PriorityType priority = StoryData.ValidPriority;
+            SizeType size = StoryData.ValidSize;
+            string assignee = BugData.ValidAssignee;
+
+            //Act
+            var sut = new Story(id, title, description, priority, size, assignee);
 
             //Assert
             Assert.AreEqual(assignee, sut.Assignee);
@@ -126,7 +147,7 @@ namespace Team.Tests.ModelsTests
             string assignee = BugData.ValidAssignee;
 
             //Act
-            var sut = new Model.Story(id, title, description, priority, size, assignee);
+            var sut = new Story(id, title, description, priority, size, assignee);
             sut.ChangeAssignee("newAssignee");
 
             //Assert
@@ -145,7 +166,7 @@ namespace Team.Tests.ModelsTests
             string assignee = BugData.ValidAssignee;
 
             //Act
-            var sut = new Model.Story(id, title, description, priority, size, assignee);
+            var sut = new Story(id, title, description, priority, size, assignee);
 
             //Assert
             Assert.IsInstanceOfType(sut, typeof(Model.Story));

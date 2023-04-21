@@ -11,6 +11,8 @@ namespace Team.Model.Interface
         public string Name { get; }
         IList <IMember> Members { get; }
         IList<IBoard> Boards { get; }
+        IList<string> ActivityHistory { get; }
+        void AddActivity(string activity);
         void AddMember(IMember member);
         void RemoveMember(IMember member);
 

@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Team.Model;
+﻿using Team.Model;
 using Team.Model.Enum;
-using Team.Model.Interface;
 using Team.Tests.Helpers;
 
 namespace Team.Tests.ModelsTests
@@ -23,7 +17,7 @@ namespace Team.Tests.ModelsTests
             int rating = FeedbackData.ValidRating;
 
             //Act
-            var sut = new Model.Feedback(id, title, description, rating);
+            var sut = new Feedback(id, title, description, rating);
 
             //Assert
             Assert.AreEqual(id, sut.Id);
@@ -39,7 +33,7 @@ namespace Team.Tests.ModelsTests
             int rating = FeedbackData.ValidRating;
 
             //Act
-            var sut = new Model.Feedback(id, title, description, rating);
+            var sut = new Feedback(id, title, description, rating);
 
             //Assert
             Assert.AreEqual(title, sut.Title);
@@ -55,7 +49,7 @@ namespace Team.Tests.ModelsTests
             int rating = FeedbackData.ValidRating;
 
             //Act
-            var sut = new Model.Feedback(id, title, description, rating);
+            var sut = new Feedback(id, title, description, rating);
 
             //Assert
             Assert.AreEqual(description, sut.Description);
@@ -71,7 +65,7 @@ namespace Team.Tests.ModelsTests
             int rating = FeedbackData.ValidRating;
 
             //Act
-            var sut = new Model.Feedback(id, title, description, rating);
+            var sut = new Feedback(id, title, description, rating);
 
             //Assert
             Assert.AreEqual(rating, sut.Rating);
@@ -87,7 +81,7 @@ namespace Team.Tests.ModelsTests
             int rating = FeedbackData.ValidRating;
 
             //Act
-            var sut = new Model.Feedback(id, title, description, rating);
+            var sut = new Feedback(id, title, description, rating);
             sut.ChangeRating(5);
 
             //Assert
@@ -104,7 +98,7 @@ namespace Team.Tests.ModelsTests
             int rating = FeedbackData.ValidRating;
 
             //Act
-            var sut = new Model.Feedback(id, title, description, rating);
+            var sut = new Feedback(id, title, description, rating);
             sut.ChangeFeedbackStatus(FeedbackStatus.Done);
 
             //Assert
@@ -121,7 +115,7 @@ namespace Team.Tests.ModelsTests
             int rating = FeedbackData.ValidRating;
 
             //Act
-            var sut = new Model.Feedback(id, title, description, rating);
+            var sut = new Feedback(id, title, description, rating);
 
             //Assert
             Assert.IsInstanceOfType(sut, typeof(Model.Feedback));

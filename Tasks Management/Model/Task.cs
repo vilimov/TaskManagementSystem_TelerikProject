@@ -57,6 +57,7 @@ namespace Team.Model
         public void RemoveComment(IComment comment)
         {
             comments.Remove(comment);
+            AddHistory($"Comment Removed by {comment.Author}");
         }
 
         public void AddHistory(string historyText)
