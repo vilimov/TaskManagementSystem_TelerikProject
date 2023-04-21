@@ -21,7 +21,7 @@ namespace Team.Command
         {
             ValidateInputParametersCount(CommandParameters, ExpectedNumberOfArguments);
 
-            if (CommandParameters.Count == 1 && CommandParameters[0] == "CreateMembers")
+            if (CommandParameters.Count == 1 && CommandParameters[0] == "CreateMember")
             {
                 throw new InvalidUserInputException("Please input valid parameters for 'CreateMember' command");
             }

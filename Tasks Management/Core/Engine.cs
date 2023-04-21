@@ -33,7 +33,9 @@ namespace Team.Core
 
                     if (inputLine == string.Empty)
                     {
-                        Console.WriteLine(EmptyCommandError);
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(EmptyCommandError); 
+                        Console.ResetColor();
                         continue;
                     }
 
