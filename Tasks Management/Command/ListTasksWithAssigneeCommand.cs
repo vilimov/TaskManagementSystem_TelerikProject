@@ -94,6 +94,10 @@ namespace Team.Command
                     }
                 }
             }
+            if (sb.Length == "{__List of tasks Filter by Status__}".Length)
+            {
+                sb.AppendLine($"    **No tasks to show**");
+            }
             return sb.ToString();
         }
         private string FilterByStatusStory(string staus)
@@ -112,6 +116,10 @@ namespace Team.Command
                     }
                 }
 
+            }
+            if (sb.Length == "{__List of tasks Filter by Status__}".Length)
+            {
+                sb.AppendLine($"    **No tasks to show**");
             }
             return sb.ToString();
         }
@@ -134,6 +142,10 @@ namespace Team.Command
                 {
                     sb.AppendLine($"    **No Tasks with Assignee {asigned.Name}**");
                 }
+            }
+            if (sb.Length == "{__List of tasks Filter by Assignee__}".Length)
+            {
+                sb.AppendLine($"    **No tasks to show**");
             }
             return sb.ToString();
         }
@@ -184,6 +196,10 @@ namespace Team.Command
                     sb.AppendLine($"    **No Tasks with Assignee**");
                 }
             }
+            if (sb.Length == "{__List of all assigned tasks Sort by title__}".Length)
+            {
+                sb.AppendLine($"    **No tasks to show**");
+            }
             return sb.ToString();
         }
 
@@ -206,7 +222,12 @@ namespace Team.Command
                     sb.AppendLine($"    **No Tasks with Assignee**");
                 }
             }
+            if (sb.Length == "{__List of all assigned tasks__}".Length)
+            {
+                sb.AppendLine($"    **No tasks to show**");
+            }
             return sb.ToString();
         }
+
     }
 }
