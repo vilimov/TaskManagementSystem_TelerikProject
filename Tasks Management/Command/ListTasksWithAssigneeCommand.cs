@@ -57,6 +57,24 @@ namespace Team.Command
                     return FilterByStatusStory(staus);
                 }
             }
+            else if (firstCommand == "FilterByStatusAndAssignee")
+            {
+                ValidateInputParametersCount(CommandParameters, 3);
+                string staus = this.CommandParameters[1];
+                string assignee = this.CommandParameters[2];
+                string taskType = string.Empty;
+                if (staus == "Fixed" || staus == "Active")
+                {
+                    taskType = "Bug";
+                    return FilterByStatusAndAssignee(staus, taskType, assignee);
+                }
+
+                if (staus == "NotDone" || staus == "InProgress" || staus == "Done")
+                {
+                    taskType = "Story";
+                    return FilterByStatusAndAssignee(staus, taskType, assignee);
+                }
+            }
             throw new InvalidUserInputException($"Invalid Command peoperty for ListTasksWithAssignee");
         }
 
@@ -119,7 +137,36 @@ namespace Team.Command
             }
             return sb.ToString();
         }
-
+        private string FilterByStatusAndAssignee(string staus, string taskType, string assignee)
+        {
+            var tempList = Repository.Tasks.Where(t => t.GetType().Name == taskType).ToList();
+            var asssigneed = Repository.Members.Where(n => n.Name == assignee).ToList();
+            int counter = 1;
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"__List of tasks Filter by Status and Assignee__");
+            foreach (var task in tempList)
+            {
+                if (task is Bug bug)
+                {
+                    if (bug.Status.ToString() == staus && bug.Assignee == assignee)
+                    {
+                        sb.AppendLine($"    {counter++}. Bug with status {bug.Status.ToString()} and assignee '{bug.Assignee}' - {bug.Title}");
+                    }
+                }
+                if (task is Story story)
+                {
+                    if (story.Status.ToString() == staus && story.Assignee == assignee)
+                    {
+                        sb.AppendLine($"    {counter++}. Story with status {story.Status.ToString()} and assignee '{story.Assignee}' - {story.Title}");
+                    }
+                }
+            }
+            if(sb.Length == 49)
+            {
+                sb.AppendLine($"    **No tasks with status and assignee to show");
+            }
+            return sb.ToString();
+        }
         private string SortTasksByTitle()
         { 
             var tempList = Repository.Tasks.Where(t => t.GetType().Name != "Feedback").OrderBy(t => t.Title).ToList();
