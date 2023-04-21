@@ -14,10 +14,17 @@ namespace Team.Command
         public CreateMemberCommand(IList<string> commandParameters, IRepository repository) : base(commandParameters, repository)
         {
         }
+
+
+
         public override string Execute()
         {
             ValidateInputParametersCount(CommandParameters, ExpectedNumberOfArguments);
 
+            if (CommandParameters.Count == 1 && CommandParameters[0] == "CreateMembers")
+            {
+                throw new InvalidUserInputException("Please input valid parameters for 'CreateMember' command");
+            }
 
             string name = this.CommandParameters[0];
 

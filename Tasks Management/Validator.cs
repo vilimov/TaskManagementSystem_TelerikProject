@@ -13,18 +13,20 @@ namespace Team
         public static void ValidateIntRange(int value, int min, int max, string message)
         {
             if (value < min || value > max)
-            {
+            { 
+                Console.ForegroundColor = ConsoleColor.Red;
                 throw new ArgumentException(message);
             }
         }
         public static PriorityType ParsePriorityTypeParameter(string value, string errorMsg)
         {
             if (PriorityType.TryParse(value, true, out PriorityType result))
-            {
+            {;
                 return result;
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 throw new InvalidUserInputException(errorMsg);
             }
         }

@@ -19,6 +19,11 @@ namespace Team.Command
         {
             ValidateInputParametersCount(CommandParameters, ExpectedNumberOfArguments);
 
+            if (CommandParameters.Count == 1 && CommandParameters[0] == "CreateTeam")
+            {
+                throw new InvalidUserInputException("Please input valid parameters for 'CreateTeam' command");
+            }
+
             //Parameters:
             // [0] Team Name
             string teamName = this.CommandParameters[0];

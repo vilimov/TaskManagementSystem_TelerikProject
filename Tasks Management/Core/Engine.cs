@@ -11,7 +11,7 @@ namespace Team.Core
 {
     public class Engine : IEngine
     {
-        private const string TerminationCommand = "Exit";
+        private const string TerminationCommand = "exit";
         private const string EmptyCommandError = "Command cannot be empty.";
         private string ReportSeparator = new string('*', 20);
 
@@ -28,6 +28,7 @@ namespace Team.Core
             {
                 try
                 {
+                    Console.ResetColor();
                     string inputLine = Console.ReadLine().Trim();
 
                     if (inputLine == string.Empty)
@@ -57,6 +58,7 @@ namespace Team.Core
                 }
                 catch (Exception ex)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     if (!string.IsNullOrEmpty(ex.Message))
                     {
                         Console.WriteLine(ex.Message);
@@ -65,6 +67,7 @@ namespace Team.Core
                     {
                         Console.WriteLine(ex);
                     }
+                    Console.ResetColor();
                     Console.WriteLine(ReportSeparator);
                 }
             }

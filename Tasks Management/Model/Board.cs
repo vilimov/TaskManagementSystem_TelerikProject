@@ -19,7 +19,7 @@ namespace Team.Model
 
         public Board(string name)
         {
-            Validator.ValidateIntRange(name.Length, minLength, maxLength, errorMsg);
+            Validator.ValidateIntRange(name.Length, minLength, maxLength, string.Format(errorMsg, minLength, maxLength));
             Name = name;
             AddActivity($"Board with name {Name} created.");
         }
