@@ -11,52 +11,65 @@ namespace Team.Command
 {
     public class ListTasksCommand : BaseCommand
     {
-        public ListTasksCommand(IList<string> commandParameters, IRepository repository) : base(commandParameters, repository)
+        public ListTasksCommand(IList<string> commandParameters, IRepository repository)
+     : base(commandParameters, repository)
         {
         }
+
         public override string Execute()
         {
             IEnumerable<ITask> tasks = Repository.GetAllTasks();
+
+            tasks = ApplyTitleFilter(tasks);
+            tasks = ApplyTitleSort(tasks);
+
             return FormatTaskList(tasks);
+        }
+
+        private IEnumerable<ITask> ApplyTitleFilter(IEnumerable<ITask> tasks)
+        {
+            string filterByTitle = CommandParameters.FirstOrDefault(p => p.StartsWith("filter="))?.Substring("filter=".Length);
+            if (!string.IsNullOrEmpty(filterByTitle))
+            {
+                return tasks.Where(t => t.Title.Contains(filterByTitle, StringComparison.OrdinalIgnoreCase));
+            }
+            return tasks;
+        }
+
+        private IEnumerable<ITask> ApplyTitleSort(IEnumerable<ITask> tasks)
+        {
+            bool sortByTitle = CommandParameters.Any(p => p.Equals("sortbytitle", StringComparison.OrdinalIgnoreCase));
+            if (sortByTitle)
+            {
+                return tasks.OrderBy(t => t.Title);
+            }
+            return tasks;
         }
 
         private string FormatTaskList(IEnumerable<ITask> tasks)
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Feedbacks:");
-            foreach (var feedback in tasks.OfType<Feedback>())
+
+            var feedbacks = tasks.OfType<Feedback>().ToList();
+            sb.AppendLine($"Feedbacks ({feedbacks.Count}):");
+            foreach (var feedback in feedbacks)
             {
-                sb.AppendLine($"Feedback with ID[{feedback.Id}] - Title: {feedback.Title}\n - Rating: {feedback.Rating}\n - Status: {feedback.StatusType}\n - Description: {feedback.Description}");
-                sb.AppendLine("     -COMMENTS-     ");
-                foreach (var comment in feedback.Comments)
-                {
-                    sb.AppendLine($"From: {comment.Author.Name}: {comment.CommentText}");
-                }
-                sb.AppendLine("========================================");
+                sb.AppendLine($"Feedback ID[{feedback.Id}] - Title: {feedback.Title}\n Description: {feedback.Description}");
+
             }
 
-            sb.AppendLine("\nStories:");
-            foreach (var story in tasks.OfType<Story>())
+            var stories = tasks.OfType<Story>().ToList();
+            sb.AppendLine($"\nStories ({stories.Count}):");
+            foreach (var story in stories)
             {
-                sb.AppendLine($"Story with ID[{story.Id}] - Title: {story.Title}\n - Description: {story.Description}\n - Priority: {story.Priority}\n - Size: {story.Size}\n - Status: {story.Status}");
-                sb.AppendLine("     -COMMENTS-     ");
-                foreach (var comment in story.Comments)
-                {
-                    sb.AppendLine($"From {comment.Author.Name}: {comment.CommentText}");
-                }
-                sb.AppendLine("========================================");
+                sb.AppendLine($"Story ID[{story.Id}] - Title: {story.Title}\n Descrioption : {story.Description}");
             }
 
-            sb.AppendLine("\nBugs:");
-            foreach (var bug in tasks.OfType<Bug>())
+            var bugs = tasks.OfType<Bug>().ToList();
+            sb.AppendLine($"\nBugs ({bugs.Count}):");
+            foreach (var bug in bugs)
             {
-                sb.AppendLine($"Bug with ID[{bug.Id}] - {bug.Title}\n - Description: {bug.Description}\n - Priority: {bug.Priority}\n - Severity: {bug.Severity}\n - Status: {bug.Status}\n - Steps: {bug.ListOfSteps}");
-                sb.AppendLine("     -COMMENTS-     ");
-                foreach (var comment in bug.Comments)
-                {
-                    sb.AppendLine($"From {comment.Author.Name}: {comment.CommentText}");
-                }
-                sb.AppendLine("========================================");
+                sb.AppendLine($"Bug ID[{bug.Id}] - Title: {bug.Title}\n Description: {bug.Description}");
             }
 
             return sb.ToString();
