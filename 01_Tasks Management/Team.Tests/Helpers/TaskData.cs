@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
@@ -38,5 +39,20 @@ namespace Team.Tests.Helpers
     public static class TeamData
     {
         public const string ValidName = "Valid_Name";
+    }
+
+    public static class TaskTestInitialization
+    {
+        public static Model.Bug InitializeTestBug()
+        {
+            return new Model.Bug(
+                        1,
+                        TaskData.ValidTitle,
+                        TaskData.ValidDescription,
+                        BugData.ValidPriority,
+                        BugData.ValidSeverity,
+                        BugData.ValidAssignee,
+                        BugData.ValidStepsList);
+        }
     }
 }
