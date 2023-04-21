@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CommandsTests\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Tasks Management\Team.csproj" />
   </ItemGroup>
 
