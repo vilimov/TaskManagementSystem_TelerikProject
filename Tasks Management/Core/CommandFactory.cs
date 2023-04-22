@@ -89,13 +89,6 @@ namespace Team.Core
                     return new ListTasksWithAssigneeCommand(commandParameters, repository);
                 default:
                     throw new InvalidUserInputException($"Command with name: {commandType} doesn't exist!");
-
-                    //ToDo
-                    //DONE - Change the Priority/Severity/Status of a bug.
-                    //Change the Priority/Size/Status of a story.
-                    //DONE - Change the Rating/Status of a feedback
-                    //Assign/Unassign a task to a person.
-                    //DONE Add comment to a task
             }
 
         }

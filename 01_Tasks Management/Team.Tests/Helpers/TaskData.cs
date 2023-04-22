@@ -15,6 +15,16 @@ namespace Team.Tests.Helpers
 {
     public static class TaskData
     {
+        public static List<string> GetListWithSize(int size)
+        {
+            return new string[size].ToList();
+        }
+
+        public static IRepository GetTestRepository()
+        {
+            return new Repository();
+        }
+
         public const string ValidTitle = "Valid_Title";
         public const string ValidDescription = "Valid_Description";
     }

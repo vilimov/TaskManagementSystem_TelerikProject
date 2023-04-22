@@ -28,6 +28,7 @@ namespace Team.Core
             {
                 try
                 {
+                    
                     Console.ResetColor();
                     string inputLine = Console.ReadLine().Trim();
 
