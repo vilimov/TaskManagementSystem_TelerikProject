@@ -28,7 +28,7 @@ namespace Team.Command
 
         private IEnumerable<ITask> ApplyTitleFilter(IEnumerable<ITask> tasks)
         {
-            string filterByTitle = CommandParameters.FirstOrDefault(p => p.StartsWith("filter="))?.Substring("filter=".Length);
+            string filterByTitle = CommandParameters.FirstOrDefault(p => p.StartsWith("filter"))?.Substring("filter".Length);
             if (!string.IsNullOrEmpty(filterByTitle))
             {
                 return tasks.Where(t => t.Title.Contains(filterByTitle, StringComparison.OrdinalIgnoreCase));
